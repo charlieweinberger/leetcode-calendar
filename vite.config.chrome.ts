@@ -10,13 +10,7 @@ export default mergeConfig(
   defineConfig({
     plugins: [
       crx({
-        manifest: {
-          ...baseManifest,
-          background: {
-            service_worker: 'src/pages/background/index.ts',
-            type: 'module'
-          },
-        } as ManifestV3Export,
+        manifest: baseManifest,
         browser: 'chrome',
         contentScripts: {
           injectCss: true,

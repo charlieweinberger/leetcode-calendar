@@ -1,11 +1,6 @@
-declare module '*.svg' {
-  import React = require('react');
-  export const ReactComponent: React.SFC<React.SVGProps<SVGSVGElement>>;
-  const src: string;
-  export default src;
-}
+type graphType = "yearly" | "";
 
-declare module '*.json' {
-  const content: string;
-  export default content;
+interface LeetCodeCalendarProps {
+  username: string;
+  graph: graphType;
 }

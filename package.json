@@ -1,7 +1,7 @@
 {
   "name": "leetcode-calendar-extension",
-  "version": "1.4.0",
   "description": "View your leetcode progress in a calendar when you open a new tab!",
+  "version": "1.4.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-leetcode-calendar": "^2.3.1",
     "webextension-polyfill": "^0.12.0"
   },
   "devDependencies": {

@@ -2,11 +2,7 @@
   "manifest_version": 3,
   "name": "Leetcode Calendar Extension",
   "description": "View your leetcode progress in a calendar when you open a new tab!",
-  "options_ui": {
-    "page": "src/pages/options/index.html"
-  },
   "action": {
-    "default_popup": "src/pages/popup/index.html",
     "default_icon": {
       "32": "icon-32.png"
     }
@@ -26,20 +22,12 @@
         "http://*/*",
         "https://*/*",
         "<all_urls>"
-      ],
-      "js": [
-        "src/pages/content/index.tsx"
-      ],
-      "css": [
-        "contentStyle.css"
       ]
     }
   ],
-  "devtools_page": "src/pages/devtools/index.html",
   "web_accessible_resources": [
     {
       "resources": [
-        "contentStyle.css",
         "icon-128.png",
         "icon-32.png"
       ],
