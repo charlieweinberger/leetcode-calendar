@@ -19,7 +19,6 @@
     "paths": {
       "@src/*": ["src/*"],
       "@assets/*": ["src/assets/*"],
-      "@locales/*": ["src/locales/*"],
       "@pages/*": ["src/pages/*"]
     }
   },

@@ -16,15 +16,6 @@
   "permissions": [
     "activeTab"
   ],
-  "content_scripts": [
-    {
-      "matches": [
-        "http://*/*",
-        "https://*/*",
-        "<all_urls>"
-      ]
-    }
-  ],
   "web_accessible_resources": [
     {
       "resources": [
