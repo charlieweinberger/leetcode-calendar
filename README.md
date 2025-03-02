@@ -8,14 +8,14 @@
 
 Doing leetcode is a massive headache. Not only are the problems themselves difficult, the amount of time and effort programmers are expected to spend practicing leetcode problems on their own is daunting. I myself frequently forget or put off practicing leetcode. This problem led me to search for a better, easier way to stay motivated to do leetcode. I needed something that reminded me efficiently and often to work on leetcode instead of getting distracted elsewhere online.
 
-## What it is
+## How it works
 
 I've built a chrome extension that shows a minimalist view of your leetcode submission history. After inputting their leetcode username, users can view the number of leetcode submissions they have done in the past year. The more green, the more leetcode problems you've done, and the more likely you are to get that internship.
 
 ## Tech Stack
 
-Frontend: React, Vite, TypeScript, Tailwind CSS
-Backend: Chrome Storage API
+- Frontend: React, Vite, TypeScript, Tailwind CSS
+- Backend: Chrome Storage API
 
 ## Challenges I ran into
 
