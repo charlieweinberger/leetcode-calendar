@@ -1,6 +1,6 @@
 import { Leetcodecalendar } from "react-leetcode-calendar";
 
-export default function Calendar({ username, graph }: LeetCodeCalendarProps) {
+export default function Calendar({ username }: LeetCodeCalendarProps) {
   return (
     <div className="text-primary-text [&_h2]:hidden
     [&_rect[data-level='0']]:fill-leetcode-level-0
@@ -13,7 +13,7 @@ export default function Calendar({ username, graph }: LeetCodeCalendarProps) {
     [&_footer>div:nth-of-type(2)>svg:nth-of-type(3)_rect]:fill-leetcode-level-2
     [&_footer>div:nth-of-type(2)>svg:nth-of-type(4)_rect]:fill-leetcode-level-3
     [&_footer>div:nth-of-type(2)>svg:nth-of-type(5)_rect]:fill-leetcode-level-4">
-      <Leetcodecalendar username={username} graph={graph} />
+      <Leetcodecalendar username={username} />
     </div>
   )
 }
