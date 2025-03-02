@@ -4,14 +4,14 @@
   "description": "View your leetcode progress in a calendar when you open a new tab!",
   "action": {
     "default_icon": {
-      "32": "icon-32.png"
+      "32": "leetcode-logo.png"
     }
   },
   "chrome_url_overrides": {
     "newtab": "src/pages/newtab/index.html"
   },
   "icons": {
-    "128": "icon-128.png"
+    "128": "leetcode-logo.png"
   },
   "permissions": [
     "activeTab",
@@ -20,8 +20,7 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "icon-128.png",
-        "icon-32.png"
+        "leetcode-logo.png"
       ],
       "matches": []
     }

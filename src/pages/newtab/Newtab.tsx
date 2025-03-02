@@ -34,7 +34,7 @@ export default function Newtab() {
             type="text"
             className="w-72 px-4 py-3 rounded-xl border border-leetcode-orange text-primary-text text-lg active:outline-leetcode-orange focus:outline-leetcode-orange"
             placeholder="Enter your Leetcode username"
-            value={textInput}
+            onChange={(e) => setTextInput(e.target.value)}
           />
           <button
             className="w-28 px-4 py-3 rounded-xl bg-leetcode-orange hover:bg-leetcode-orange/80 transition text-secondary-background text-lg font-bold"
