@@ -30,7 +30,7 @@ export default function App() {
     });
   };
 
-  // TODO: Improve UI of settings trigger/modal
+  // TODO: Improve the UI of settings trigger/modal
   // TODO: Make settings modal automatically appear if and only if username is nothing
   // TODO: Make calendar re-render when username is updated
 
