@@ -94,7 +94,7 @@ export default function Calendar({ username, year }: CalendarConfig) {
   const [ data, setData ] = useState<Data>([]);
 
   const leetcodeTheme: ThemeInput = {
-    light: ["#ffffff", "#2b642a", "#459741", "#5fbf56", "#97df93"],
+    light: ["#393939", "#2b642a", "#459741", "#5fbf56", "#97df93"],
     dark: ["#393939", "#2b642a", "#459741", "#5fbf56", "#97df93"],
   };
 
@@ -120,6 +120,7 @@ export default function Calendar({ username, year }: CalendarConfig) {
       <ActivityCalendar
         data={data}
         theme={leetcodeTheme}
+        colorScheme="dark"
         labels={{
           totalCount: `{{count}} submissions in ${(year === "prev") ? "the past year" : year}`
         }}
