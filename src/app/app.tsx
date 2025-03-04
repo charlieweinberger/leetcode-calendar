@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import CalendarContainer from "@src/components/CalendarContainer";
+import Calendar from "@src/app/components/Calendar";
+import "@src/app/style.css";
 
-export default function Newtab() {
+export default function App() {
 
   const [ textInput, setTextInput ] = useState<string>("");
   const [ username, setUsername ] = useState<string>("");
@@ -52,7 +53,9 @@ export default function Newtab() {
       <div className="mt-48 flex flex-col items-center gap-4 text-6xl text-primary-text font-bold">
         Leetcode Calendar for <span className="text-leetcode-orange">{username}</span>
       </div>
-      <CalendarContainer username={username} />
+      <div className="p-8 bg-secondary-background rounded-xl">
+        <Calendar username={username} year={2025} />
+      </div>
     </div>
   );
 }

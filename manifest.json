@@ -1,4 +1,5 @@
 {
+  "version": "1.0.0",
   "manifest_version": 3,
   "name": "Leetcode Calendar Extension",
   "description": "View your leetcode progress in a calendar when you open a new tab!",
@@ -8,15 +9,18 @@
     }
   },
   "chrome_url_overrides": {
-    "newtab": "src/pages/newtab/index.html"
-  },
-  "icons": {
-    "128": "leetcode-logo.png"
+    "newtab": "src/index.html"
   },
   "permissions": [
     "activeTab",
     "storage"
   ],
+  "host_permissions": [
+    "https://leetcode.com/graphql"
+  ],
+  "icons": {
+    "128": "leetcode-logo.png"
+  },
   "web_accessible_resources": [
     {
       "resources": [

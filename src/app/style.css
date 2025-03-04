@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+
+  --color-primary-background: #1a1a1a;
+  --color-secondary-background: #282828;
+  --color-tertiary-background: #373737;
+
+  --color-primary-text: #ffffff;
+  --color-secondary-text: #a0a0a0;
+
+  --color-leetcode-level-0: #393939;
+  --color-leetcode-level-1: #2b642a;
+  --color-leetcode-level-2: #459741;
+  --color-leetcode-level-3: #5fbf56;
+  --color-leetcode-level-4: #97df93;
+
+  --color-leetcode-orange: #eba440;
+
+}
