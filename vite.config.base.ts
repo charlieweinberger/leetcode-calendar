@@ -8,7 +8,7 @@ import manifest from './manifest.json';
 import pkg from './package.json';
 
 
-const isDev = process.env.__DEV__ === 'true';
+const isDev = process.env.__DEV__ === "true";
 
 export const baseManifest = {
     ...manifest,
@@ -22,9 +22,14 @@ export const baseBuildOptions: BuildOptions = {
 
 export default defineConfig({
   plugins: [
-    tailwindcss(),
-    tsconfigPaths(),
     react(),
+    tsconfigPaths(),
+    tailwindcss(),
   ],
-  publicDir: resolve(__dirname, 'public'),
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "./src"),
+    },
+  },
+  publicDir: resolve(__dirname, "public"),
 });

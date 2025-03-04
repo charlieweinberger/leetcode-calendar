@@ -1,6 +1,8 @@
+type yearType = number | "prev";
+
 interface CalendarConfig {
   username: string;
-  year: number;
+  year: yearType;
 }
 
 interface jsonData {

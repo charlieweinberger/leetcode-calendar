@@ -3,8 +3,11 @@
 import { useState, useEffect } from "react";
 import { ActivityCalendar, Skeleton, ThemeInput } from "react-activity-calendar";
 
-async function fetchData(username: string, year: number) {
+async function fetchData(username: string, year: yearType) {
   try {
+    const variables = (year === "prev")
+      ? { "username": username }
+      : { "username": username, "year": year };
     const response = await fetch("https://leetcode.com/graphql", {
       method: "POST",
       headers: {
@@ -19,39 +22,59 @@ async function fetchData(username: string, year: number) {
             }
           }
         }`,
-        variables: {
-          "username": username,
-          "year": year
-        }
+        variables: variables
       })
     })
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const json = await response.json();
-    return parseData(json.data.matchedUser.userCalendar.submissionCalendar);
+    return parseData(json.data.matchedUser.userCalendar.submissionCalendar, year);
   } catch (error) {
     console.error(`Fetch error: ${error}`);
     return null;
   }
 }
 
-function parseData(rawData: string) {
+function parseData(rawData: string, year: yearType) {
+  
   const jsonData: jsonData = JSON.parse(rawData);
   const parsedData: Data = [];
+  
   for (const [date, count] of Object.entries(jsonData)) {
     parsedData.push({
-      date: convertTimestampToDate(parseInt(date)),
+      date: formatDate(parseInt(date) * 1000),
       count: count,
       level: getLevelFromCount(count, jsonData),
     });
   }
-  console.log(parsedData);
+
+  const addToStartIfNonexistent = (date: string) => {
+    if (parsedData[0].date !== date) {
+      parsedData.unshift({ date: date, count: 0, level: 0 });
+    }
+  }
+  const addToEndIfNonexistent = (date: string) => {
+    if (parsedData[parsedData.length - 1].date !== date) {
+      parsedData.push({ date: date, count: 0, level: 0 });
+    }
+  }
+
+  if (year === "prev") {
+    addToStartIfNonexistent(formatDate(new Date().setUTCFullYear(new Date().getUTCFullYear() - 1)));
+    addToEndIfNonexistent(formatDate());
+  } else {
+    addToStartIfNonexistent(`${year}-01-01`);
+    addToEndIfNonexistent(`${year}-12-31`);
+  }
+
+  console.log("parsedData: ", parsedData);
   return parsedData;
+  
 }
 
-function convertTimestampToDate(timestamp: number) {
-  const date = new Date(timestamp * 1000);
+function formatDate(timestamp: number = Date.now()) {
+  const date = new Date(timestamp);
   const year = date.getUTCFullYear();
   const month = date.getUTCMonth() + 1;
   const day = date.getUTCDate();
@@ -71,7 +94,7 @@ export default function Calendar({ username, year }: CalendarConfig) {
   const [ data, setData ] = useState<Data>([]);
 
   const leetcodeTheme: ThemeInput = {
-    light: ["#393939", "#2b642a", "#459741", "#5fbf56", "#97df93"],
+    light: ["#ffffff", "#2b642a", "#459741", "#5fbf56", "#97df93"],
     dark: ["#393939", "#2b642a", "#459741", "#5fbf56", "#97df93"],
   };
 
@@ -97,10 +120,8 @@ export default function Calendar({ username, year }: CalendarConfig) {
       <ActivityCalendar
         data={data}
         theme={leetcodeTheme}
-        colorScheme="dark"
-        showWeekdayLabels={true}
         labels={{
-          totalCount: "{{count}} submissions in the past year"
+          totalCount: `{{count}} submissions in ${(year === "prev") ? "the past year" : year}`
         }}
       />
     </div>
