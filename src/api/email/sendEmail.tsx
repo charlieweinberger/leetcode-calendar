@@ -16,10 +16,11 @@ export default async function sendEmail({ feedbackType, feedbackContent, userEma
       }),
     });
     if (error) {
-      return null;
+      throw new Error(error.message);
     }
     return data;
   } catch (error) {
+    console.error(`Resent error: ${error}`);
     return null;
   }
 }

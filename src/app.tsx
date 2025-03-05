@@ -62,7 +62,7 @@ export default function App() {
   }, [username, year]);
 
   return (
-    <div className="h-screen bg-primary-background flex flex-col gap-16 items-center">
+    <div className="h-screen bg-primary-background flex flex-col gap-12 items-center">
       <div className="mt-48 px-8 flex flex-col items-center justify-center gap-2 text-6xl text-primary-text text-center font-bold">
         <p>Leetcode Calendar for</p>
         <span className="text-leetcode-orange">{username}</span>
