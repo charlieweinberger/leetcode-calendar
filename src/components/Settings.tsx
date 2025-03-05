@@ -96,7 +96,6 @@ export default function Settings({ username, year, loadingUsername, updateUserna
             Update your Leetcode username and preferred time range.
           </DialogDescription>
         </DialogHeader>
-        {/* // TODO make this a <form> element (see Feedback.tsx) */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="grid grid-cols-[33%_67%] gap-y-4">
             <Label>Username</Label>
@@ -117,32 +116,6 @@ export default function Settings({ username, year, loadingUsername, updateUserna
             Save
           </Button>
         </form>
-        {/* <div className="grid grid-cols-[30%_70%] gap-y-4">
-          <Label>Username</Label>
-          <Input
-            defaultValue={username}
-            placeholder="username"
-            onChange={(e) => setUsernameInput(e.target.value)}
-            className="border-none bg-tertiary-background hover:bg-quaternary-background active:bg-quaternary-background selection:bg-leetcode-orange"
-          />
-          <Label>Year</Label>
-          <YearDropdown
-            options={["Previous 365 Days", "Year to Date"]}
-            yearInput={yearInput}
-            setYearInput={setYearInput}
-          />
-        </div>
-        <div>
-          <div className="flex justify-center">
-            <Button
-              type="submit"
-              className="bg-leetcode-orange hover:bg-leetcode-orange/80 font-bold"
-              onClick={handleSubmit}
-            >
-              Save
-            </Button>
-          </div>
-        </div> */}
       </DialogContent>
     </Dialog>
   );
