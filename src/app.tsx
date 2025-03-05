@@ -13,8 +13,10 @@ export default function App() {
 
   // Get username from storage
   useEffect(() => {
-    chrome.storage.sync.get(["username"], (result) => setUsername(result.username ?? username));
-    setLoadingUsername(false);
+    chrome.storage.sync.get(["username"], (result) => {
+      setUsername(result.username ?? username);
+      setLoadingUsername(false);
+    });
   }, [username]);
 
   // Update username in storage

@@ -69,9 +69,6 @@ export default function Settings({ username, year, loadingUsername, updateUserna
   const [ yearInput, setYearInput ] = useState<yearType>(year);
 
   const handleSubmit = (e: React.FormEvent) => {
-    console.log("Handling form submit...");
-    console.log(`submitted username: ${usernameInput}`);
-    console.log(`submitted year: ${yearInput}`);
     e.preventDefault();
     // Update username, year, and calendar
     updateUsername(usernameInput);
@@ -107,7 +104,7 @@ export default function Settings({ username, year, loadingUsername, updateUserna
               onChange={(e) => setUsernameInput(e.target.value)}
               className="border-none bg-tertiary-background hover:bg-quaternary-background active:bg-quaternary-background selection:bg-leetcode-orange"
             />
-            <Label>Year</Label>
+            <Label>Year Type</Label>
             <YearDropdown
               options={["Year to Date", "Previous 365 Days"]}
               yearInput={yearInput}
