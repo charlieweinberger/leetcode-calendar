@@ -7,7 +7,7 @@ import fetchData from "@/api/leetcode/fetchData";
 export default function App() {
 
   const [ username, setUsername ] = useState("");
-  const [ year, setYear ] = useState<yearType>("Year to Date");
+  const [ year, setYear ] = useState<yearType>("Previous 365 Days");
   const [ data, setData ] = useState<Data>([]);
   const [ loadingUsername, setLoadingUsername ] = useState(true);
 
