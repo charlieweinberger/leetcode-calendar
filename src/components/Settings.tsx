@@ -85,9 +85,6 @@ export default function Settings({ username, year, loadingUsername, updateUserna
     setOpen(false);
   };
 
-  console.log("\n\n\nusername is \"\":");
-  console.log(username === "");
-
   return (
     <Dialog open={open || (username === "" && !loadingUsername)} onOpenChange={() => setOpen(!open)}>
       <DialogTrigger asChild>
@@ -105,6 +102,7 @@ export default function Settings({ username, year, loadingUsername, updateUserna
             Update your Leetcode username and preferred time range.
           </DialogDescription>
         </DialogHeader>
+        {/* // TODO make this a <form> element (see Feedback.tsx) */}
         <div className="grid grid-cols-[30%_70%] gap-y-4">
           <Label>Username</Label>
           <Input

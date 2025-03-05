@@ -11,3 +11,11 @@ interface Datum {
 }
 
 type Data = Datum[];
+
+interface Feedback {
+  feedbackType: FeedbackType
+  feedbackContent: string
+  userEmail?: string
+}
+
+type feedbackType = "Suggestion" | "Bug";

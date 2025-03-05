@@ -1,4 +1,4 @@
-export async function fetchData(username: string, year: yearType) {
+export default async function fetchData(username: string, year: yearType) {
   try {
     const variables = (year === "prev")
       ? { "username": username }
@@ -36,13 +36,15 @@ function parseData(rawData: string, year: yearType) {
   const parsedData: Data = [];
 
   // Add data from leetcode API
-  const jsonData: jsonData = JSON.parse(rawData);
-  for (const [date, count] of Object.entries(jsonData)) {
-    parsedData.push({
-      date: formatDate(parseInt(date) * 1000),
-      count: count,
-      level: getLevelFromCount(count, jsonData),
-    });
+  if (rawData !== "") {
+    const jsonData: jsonData = JSON.parse(rawData);
+    for (const [date, count] of Object.entries(jsonData)) {
+      parsedData.push({
+        date: formatDate(parseInt(date) * 1000),
+        count: count,
+        level: getLevelFromCount(count, jsonData),
+      });
+    }
   }
 
   // If start or end date aren't included in data, add them (so calendar is full)

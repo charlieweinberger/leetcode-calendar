@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Calendar from "@/components/Calendar";
 import Settings from "@/components/Settings";
-import { fetchData } from "@/lib/getData";
+import Feedback from "@/components/Feedback";
+import fetchData from "@/api/leetcode/fetchData";
 
 export default function App() {
 
@@ -9,7 +10,6 @@ export default function App() {
   const [ year, setYear ] = useState<yearType>(new Date().getUTCFullYear());
   const [ data, setData ] = useState<Data>([]);
   const [ loadingUsername, setLoadingUsername ] = useState(true);
-
   // Get username from storage
   useEffect(() => {
     chrome.storage.sync.get(["username"], (result) => {
@@ -46,6 +46,8 @@ export default function App() {
     });
   };
 
+  // TODO: Add caching every so often (5 minutes? 1 hour) for data
+
   // Get data from Leetcode API
   const updateCalendar = async (newUsername: string, newYear: yearType) => {
     const parsedData = await fetchData(newUsername, newYear);
@@ -61,8 +63,9 @@ export default function App() {
 
   return (
     <div className="h-screen bg-primary-background flex flex-col gap-16 items-center">
-      <div className="mt-48 flex flex-col items-center gap-4 text-6xl text-primary-text font-bold">
-        Leetcode Calendar for <span className="text-leetcode-orange">{username}</span>
+      <div className="mt-48 px-8 flex flex-col items-center justify-center gap-2 text-6xl text-primary-text text-center font-bold">
+        <p>Leetcode Calendar for</p>
+        <span className="text-leetcode-orange">{username}</span>
       </div>
       <div className="flex flex-col items-center gap-6">
         <div className="p-8 bg-secondary-background rounded-xl">
@@ -72,14 +75,17 @@ export default function App() {
             loadingUsername={loadingUsername}
           />
         </div>
-        <Settings
-          username={username}
-          year={year}
-          loadingUsername={loadingUsername}
-          updateUsername={updateUsername}
-          updateYear={updateYear}
-          updateCalendar={updateCalendar}
-        />
+        <div className="flex flex-row justify-center gap-4">
+          <Settings
+            username={username}
+            year={year}
+            loadingUsername={loadingUsername}
+            updateUsername={updateUsername}
+            updateYear={updateYear}
+            updateCalendar={updateCalendar}
+          />
+          <Feedback />
+        </div>
       </div>
     </div>
   );

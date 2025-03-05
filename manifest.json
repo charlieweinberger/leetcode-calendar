@@ -16,7 +16,8 @@
     "storage"
   ],
   "host_permissions": [
-    "https://leetcode.com/graphql"
+    "https://leetcode.com/graphql",
+    "https://api.resend.com/emails"
   ],
   "icons": {
     "128": "leetcode-logo.png"
