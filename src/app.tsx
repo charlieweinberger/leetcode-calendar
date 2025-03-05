@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import Calendar from "@/components/Calendar";
 import Settings from "@/components/Settings";
+import { fetchData } from "@/lib/getData";
 
 export default function App() {
 
   const [ username, setUsername ] = useState<string>("");
   const [ year, setYear ] = useState<yearType>(new Date().getUTCFullYear());
+  const [ data, setData ] = useState<Data>([]);
 
+  // Get username from storage
   useEffect(() => {
     chrome.storage.sync.get(["username"], (result) => {
       if (result.username) {
@@ -15,6 +18,7 @@ export default function App() {
     });
   }, [username]);
 
+  // Set username to storage
   const updateUsername = (input: string) => {
     const newUsername = input.toLowerCase().trim();
     if (newUsername) {
@@ -24,15 +28,38 @@ export default function App() {
     }
   };
 
+  // Get year from storage
+  useEffect(() => {
+    chrome.storage.sync.get(["year"], (result) => {
+      if (result.year) {
+        setYear(result.year);
+      }
+    });
+  }, [year]);
+
+  // Set username to storage
   const updateYear = (year: yearType) => {
     chrome.storage.sync.set({ "year": year }, () => {
       setYear(year);
     });
   };
 
-  // TODO: Improve the UI of the settings trigger & following modal
-  // TODO: Make settings modal appear INSTEAD of the calendar (not as a modal) if the username is empty OR do what is described in lines 38-42 below
-  // TODO: Make calendar re-render when username is updated
+  // Fetch data from Leetcode API
+  const updateCalendar = async (newUsername: string, newYear: yearType) => {
+    const parsedData = await fetchData(newUsername, newYear);
+    if (!parsedData) {
+      //! Display error in UI
+      return;
+    }
+    setData(parsedData);
+  }
+
+  // Update data whenever username is updated
+  useEffect(() => {
+    updateCalendar(username, year);
+  }, [username, year]);
+
+  // TODO: Make settings modal appear INSTEAD of the calendar (not as a modal) if the username is empty OR do what is described in the if statement below
 
   if (username === "") {
     // leetcode calendar
@@ -49,14 +76,17 @@ export default function App() {
       </div>
       <div className="flex flex-col items-center gap-6">
         <div className="p-8 bg-secondary-background rounded-xl">
-          <Calendar username={username} year={year} />
+          <Calendar
+            year={year}
+            data={data}
+          />
         </div>
-        {/* // TODO consider just moving <Settings /> into app.tsx? */}
         <Settings
           username={username}
-          updateUsername={updateUsername}
           year={year}
+          updateUsername={updateUsername}
           updateYear={updateYear}
+          updateCalendar={updateCalendar}
         />
       </div>
     </div>

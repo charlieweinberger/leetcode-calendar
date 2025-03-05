@@ -27,7 +27,7 @@ function YearDropdown({ yearInput, setYearInput }: {
 }) {
 
   // TODO: add proper years here, depending on the user's account age
-  const options: string[] = ["Previous 365 Days", "2025", "2024"];
+  const options: string[] = ["Previous 365 Days", "2025"];
 
   return (
     <DropdownMenu>
@@ -58,11 +58,12 @@ function YearDropdown({ yearInput, setYearInput }: {
   );
 }
 
-export default function Settings({ username, updateUsername, year, updateYear }: {
-  username: string,
-  updateUsername: (username: string) => void,
-  year: yearType,
+export default function Settings({ username, year, updateUsername, updateYear, updateCalendar }: {
+  username: string
+  year: yearType
+  updateUsername: (username: string) => void
   updateYear: (year: yearType) => void
+  updateCalendar: (usernameInput: string, newYear: yearType) => void
 }) {
 
   const [ open, setOpen ] = useState(username === "");
@@ -70,17 +71,16 @@ export default function Settings({ username, updateUsername, year, updateYear }:
   const [ yearInput, setYearInput ] = useState<string>(year.toString());
 
   const handleSubmit = () => {
-    updateSettings();
-    setUsernameInput("");
-    setOpen(false);
-    rerenderCalendar(); // TODO implement this functionality
-  };
-
-  const updateSettings = () => {
+    // Update username and year
     updateUsername(usernameInput);
     const newYear: yearType = (yearInput === "Previous 365 Days") ? "prev" : parseInt(yearInput);
     updateYear(newYear);
-  }
+    // Update calendar
+    updateCalendar(usernameInput, newYear);
+    // reset variables
+    setUsernameInput("");
+    setOpen(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={() => setOpen(!open)}>
