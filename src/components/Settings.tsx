@@ -21,14 +21,11 @@ import {
 
 import { ChevronDown } from "lucide-react";
 
-function YearDropdown({ yearInput, setYearInput }: {
-  yearInput: string,
+function YearDropdown({ options, yearInput, setYearInput }: {
+  options: string[]
+  yearInput: string
   setYearInput: (yearInput: string) => void
 }) {
-
-  // TODO: add proper years here, depending on the user's account age
-  const options: string[] = ["Previous 365 Days", "2025"];
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="bg-tertiary-background hover:bg-quaternary-background active:bg-quaternary-background font-normal">
@@ -66,14 +63,19 @@ export default function Settings({ username, year, updateUsername, updateYear, u
   updateCalendar: (usernameInput: string, newYear: yearType) => void
 }) {
 
-  const [ open, setOpen ] = useState(username === "");
+  const [ open, setOpen ] = useState(false);
   const [ usernameInput, setUsernameInput ] = useState<string>(username);
   const [ yearInput, setYearInput ] = useState<string>(year.toString());
+
+  const dropdownOptions: { [key: string]: yearType } = {
+    "Previous 365 Days": "prev",
+    "2025": 2025
+  } 
 
   const handleSubmit = () => {
     // Update username and year
     updateUsername(usernameInput);
-    const newYear: yearType = (yearInput === "Previous 365 Days") ? "prev" : parseInt(yearInput);
+    const newYear: yearType = dropdownOptions[yearInput];
     updateYear(newYear);
     // Update calendar
     updateCalendar(usernameInput, newYear);
@@ -83,9 +85,12 @@ export default function Settings({ username, year, updateUsername, updateYear, u
   };
 
   return (
-    <Dialog open={open} onOpenChange={() => setOpen(!open)}>
+    <Dialog open={open || username === ""} onOpenChange={() => setOpen(!open)}>
       <DialogTrigger asChild>
-        <Button className="bg-secondary-background hover:bg-tertiary-background">
+        <Button
+          onClick={() => setOpen(true)}
+          className="bg-secondary-background hover:bg-tertiary-background"
+        >
           Settings
         </Button>
       </DialogTrigger>
@@ -105,7 +110,11 @@ export default function Settings({ username, year, updateUsername, updateYear, u
             className="border-none bg-tertiary-background hover:bg-quaternary-background active:bg-quaternary-background selection:bg-leetcode-orange"
           />
           <Label>Year</Label>
-          <YearDropdown yearInput={yearInput} setYearInput={setYearInput} />
+          <YearDropdown
+            options={Object.keys(dropdownOptions)}
+            yearInput={yearInput}
+            setYearInput={setYearInput}
+          />
         </div>
         <div>
           <div className="flex justify-center">

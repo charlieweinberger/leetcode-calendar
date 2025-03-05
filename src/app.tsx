@@ -18,7 +18,7 @@ export default function App() {
     });
   }, [username]);
 
-  // Set username to storage
+  // Update username in storage
   const updateUsername = (input: string) => {
     const newUsername = input.toLowerCase().trim();
     if (newUsername) {
@@ -37,37 +37,25 @@ export default function App() {
     });
   }, [year]);
 
-  // Set username to storage
+  // Update year in storage
   const updateYear = (year: yearType) => {
     chrome.storage.sync.set({ "year": year }, () => {
       setYear(year);
     });
   };
 
-  // Fetch data from Leetcode API
+  // Get data from Leetcode API
   const updateCalendar = async (newUsername: string, newYear: yearType) => {
     const parsedData = await fetchData(newUsername, newYear);
-    if (!parsedData) {
-      //! Display error in UI
-      return;
+    if (parsedData) {
+      setData(parsedData);
     }
-    setData(parsedData);
   }
 
   // Update data whenever username is updated
   useEffect(() => {
     updateCalendar(username, year);
   }, [username, year]);
-
-  // TODO: Make settings modal appear INSTEAD of the calendar (not as a modal) if the username is empty OR do what is described in the if statement below
-
-  if (username === "") {
-    // leetcode calendar
-    // info about the extension
-    // button to insert info
-    // when a user clicks this button, show the settings modal, but w/ different text
-    // after the user enters their info, render the calendar
-  }
 
   return (
     <div className="h-screen bg-primary-background flex flex-col gap-16 items-center">
