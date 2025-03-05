@@ -69,13 +69,15 @@ export default function Settings({ username, year, loadingUsername, updateUserna
   const [ yearInput, setYearInput ] = useState<yearType>(year);
 
   const handleSubmit = (e: React.FormEvent) => {
+    console.log("Handling form submit...");
+    console.log(`submitted username: ${usernameInput}`);
+    console.log(`submitted year: ${yearInput}`);
     e.preventDefault();
     // Update username, year, and calendar
     updateUsername(usernameInput);
     updateYear(yearInput);
     updateCalendar(usernameInput, yearInput);
     // reset variables
-    setUsernameInput("");
     setOpen(false);
   };
 
@@ -107,7 +109,7 @@ export default function Settings({ username, year, loadingUsername, updateUserna
             />
             <Label>Year</Label>
             <YearDropdown
-              options={["Previous 365 Days", "Year to Date"]}
+              options={["Year to Date", "Previous 365 Days"]}
               yearInput={yearInput}
               setYearInput={setYearInput}
             />

@@ -10,13 +10,13 @@ export default function Calendar({ year, data, loadingUsername }: {
     light: ["#393939", "#2b642a", "#459741", "#5fbf56", "#97df93"],
     dark: ["#393939", "#2b642a", "#459741", "#5fbf56", "#97df93"],
   };
-
+  const colorScheme: "dark" | "light" | undefined = "dark";
   const yearLabel: string = (year === "Previous 365 Days")
     ? "the past year"
     : new Date().getUTCFullYear().toString();
 
   if (!data.length || loadingUsername) {
-    return <Skeleton loading />;
+    return <Skeleton colorScheme={colorScheme} loading />;
   }
 
   return (
@@ -24,7 +24,7 @@ export default function Calendar({ year, data, loadingUsername }: {
       <ActivityCalendar
         data={data}
         theme={leetcodeTheme}
-        colorScheme="dark"
+        colorScheme={colorScheme}
         labels={{
           totalCount: `{{count}} submissions in ${yearLabel}`
         }}

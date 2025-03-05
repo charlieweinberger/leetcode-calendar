@@ -13,48 +13,34 @@ export default function App() {
 
   // Get username from storage
   useEffect(() => {
-    chrome.storage.sync.get(["username"], (result) => {
-      if (result.username) {
-        setUsername(result.username);
-      }
-      setLoadingUsername(false);
-    });
+    chrome.storage.sync.get(["username"], (result) => setUsername(result.username ?? username));
+    setLoadingUsername(false);
   }, [username]);
 
   // Update username in storage
   const updateUsername = (input: string) => {
     const newUsername = input.toLowerCase().trim();
-    if (newUsername) {
-      chrome.storage.sync.set({ "username": newUsername }, () => {
-        setUsername(newUsername);
-      });
-    }
+    if (!newUsername) return;
+    chrome.storage.sync.set({ "username": newUsername }, () => setUsername(newUsername));
   };
 
   // Get year from storage
   useEffect(() => {
-    chrome.storage.sync.get(["year"], (result) => {
-      if (result.year) {
-        setYear(result.year);
-      }
-    });
+    chrome.storage.sync.get(["year"], (result) => setYear(result.year ?? year));
   }, [year]);
 
   // Update year in storage
-  const updateYear = (year: yearType) => {
-    chrome.storage.sync.set({ "year": year }, () => {
-      setYear(year);
-    });
+  const updateYear = (newYear: yearType) => {
+    chrome.storage.sync.set({ "year": newYear }, () => setYear(newYear));
   };
 
   // TODO: Add caching every so often (5 minutes? 1 hour) for data
 
   // Get data from Leetcode API
   const updateCalendar = async (newUsername: string, newYear: yearType) => {
+    if (newUsername === "") return;
     const parsedData = await fetchData(newUsername, newYear);
-    if (parsedData) {
-      setData(parsedData);
-    }
+    setData(parsedData ?? data);
   }
 
   // Update data whenever username or year are updated
