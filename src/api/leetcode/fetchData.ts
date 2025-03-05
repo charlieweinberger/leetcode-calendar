@@ -1,8 +1,8 @@
 export default async function fetchData(username: string, year: yearType) {
   try {
-    const variables = (year === "prev")
+    const variables = (year === "Previous 365 Days")
       ? { "username": username }
-      : { "username": username, "year": year };
+      : { "username": username, "year": new Date().getUTCFullYear() };
     const response = await fetch("https://leetcode.com/graphql", {
       method: "POST",
       headers: {
@@ -49,12 +49,11 @@ function parseData(rawData: string, year: yearType) {
 
   // If start or end date aren't included in data, add them (so calendar is full)
 
-  const startDate = (year === "prev")
-    ? formatDate(new Date().setUTCFullYear(new Date().getUTCFullYear() - 1))
-    : `${year}-01-01`;
-  const endDate = (year === "prev")
-    ? formatDate()
-    : `${year}-12-31`;
+  const currentYear = new Date().getUTCFullYear();
+  const prevYearSameDay = new Date().setUTCFullYear(currentYear - 1);
+
+  const startDate = (year === "Previous 365 Days") ? formatDate(prevYearSameDay) : `${currentYear}-01-01`;
+  const endDate   = (year === "Previous 365 Days") ? formatDate(Date.now())      : `${currentYear}-12-31`;
 
   if (parsedData.length === 0 || parsedData[0].date !== startDate) {
     parsedData.unshift({ date: startDate, count: 0, level: 0 });
@@ -67,7 +66,7 @@ function parseData(rawData: string, year: yearType) {
   
 }
 
-function formatDate(timestamp: number = Date.now()) {
+function formatDate(timestamp: number) {
   const date = new Date(timestamp);
   const year = date.getUTCFullYear();
   const month = date.getUTCMonth() + 1;

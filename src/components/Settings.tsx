@@ -22,9 +22,9 @@ import {
 import { ChevronDown } from "lucide-react";
 
 function YearDropdown({ options, yearInput, setYearInput }: {
-  options: string[]
-  yearInput: string
-  setYearInput: (yearInput: string) => void
+  options: yearType[]
+  yearInput: yearType
+  setYearInput: (yearInput: yearType) => void
 }) {
   return (
     <DropdownMenu>
@@ -37,7 +37,7 @@ function YearDropdown({ options, yearInput, setYearInput }: {
       <DropdownMenuContent className="border-none bg-tertiary-background text-primary-text p-2">
         <DropdownMenuRadioGroup
           value={yearInput}
-          onValueChange={setYearInput}
+          onValueChange={(value: string) => setYearInput(value as yearType)}
           className="w-42 border-none flex flex-col gap-1"
         >
           {options.map((option: string) => {
@@ -66,20 +66,14 @@ export default function Settings({ username, year, loadingUsername, updateUserna
 
   const [ open, setOpen ] = useState(false);
   const [ usernameInput, setUsernameInput ] = useState<string>(username);
-  const [ yearInput, setYearInput ] = useState<string>(year.toString());
+  const [ yearInput, setYearInput ] = useState<yearType>(year);
 
-  const dropdownOptions: { [key: string]: yearType } = {
-    "Previous 365 Days": "prev",
-    "2025": 2025
-  } 
-
-  const handleSubmit = () => {
-    // Update username and year
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Update username, year, and calendar
     updateUsername(usernameInput);
-    const newYear: yearType = dropdownOptions[yearInput];
-    updateYear(newYear);
-    // Update calendar
-    updateCalendar(usernameInput, newYear);
+    updateYear(yearInput);
+    updateCalendar(usernameInput, yearInput);
     // reset variables
     setUsernameInput("");
     setOpen(false);
@@ -103,7 +97,27 @@ export default function Settings({ username, year, loadingUsername, updateUserna
           </DialogDescription>
         </DialogHeader>
         {/* // TODO make this a <form> element (see Feedback.tsx) */}
-        <div className="grid grid-cols-[30%_70%] gap-y-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div className="grid grid-cols-[33%_67%] gap-y-4">
+            <Label>Username</Label>
+            <Input
+              defaultValue={username}
+              placeholder="username"
+              onChange={(e) => setUsernameInput(e.target.value)}
+              className="border-none bg-tertiary-background hover:bg-quaternary-background active:bg-quaternary-background selection:bg-leetcode-orange"
+            />
+            <Label>Year</Label>
+            <YearDropdown
+              options={["Previous 365 Days", "Year to Date"]}
+              yearInput={yearInput}
+              setYearInput={setYearInput}
+            />
+          </div>
+          <Button type="submit" className="bg-leetcode-orange hover:bg-leetcode-orange/80 font-bold">
+            Save
+          </Button>
+        </form>
+        {/* <div className="grid grid-cols-[30%_70%] gap-y-4">
           <Label>Username</Label>
           <Input
             defaultValue={username}
@@ -113,7 +127,7 @@ export default function Settings({ username, year, loadingUsername, updateUserna
           />
           <Label>Year</Label>
           <YearDropdown
-            options={Object.keys(dropdownOptions)}
+            options={["Previous 365 Days", "Year to Date"]}
             yearInput={yearInput}
             setYearInput={setYearInput}
           />
@@ -128,7 +142,7 @@ export default function Settings({ username, year, loadingUsername, updateUserna
               Save
             </Button>
           </div>
-        </div>
+        </div> */}
       </DialogContent>
     </Dialog>
   );

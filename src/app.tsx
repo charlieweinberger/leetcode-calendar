@@ -7,9 +7,10 @@ import fetchData from "@/api/leetcode/fetchData";
 export default function App() {
 
   const [ username, setUsername ] = useState("");
-  const [ year, setYear ] = useState<yearType>(new Date().getUTCFullYear());
+  const [ year, setYear ] = useState<yearType>("Year to Date");
   const [ data, setData ] = useState<Data>([]);
   const [ loadingUsername, setLoadingUsername ] = useState(true);
+
   // Get username from storage
   useEffect(() => {
     chrome.storage.sync.get(["username"], (result) => {
@@ -56,7 +57,7 @@ export default function App() {
     }
   }
 
-  // Update data whenever username is updated
+  // Update data whenever username or year are updated
   useEffect(() => {
     updateCalendar(username, year);
   }, [username, year]);

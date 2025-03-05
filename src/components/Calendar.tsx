@@ -11,6 +11,10 @@ export default function Calendar({ year, data, loadingUsername }: {
     dark: ["#393939", "#2b642a", "#459741", "#5fbf56", "#97df93"],
   };
 
+  const yearLabel: string = (year === "Previous 365 Days")
+    ? "the past year"
+    : new Date().getUTCFullYear().toString();
+
   if (!data.length || loadingUsername) {
     return <Skeleton loading />;
   }
@@ -22,7 +26,7 @@ export default function Calendar({ year, data, loadingUsername }: {
         theme={leetcodeTheme}
         colorScheme="dark"
         labels={{
-          totalCount: `{{count}} submissions in ${(year === "prev") ? "the past year" : year}`
+          totalCount: `{{count}} submissions in ${yearLabel}`
         }}
       />
     </div>

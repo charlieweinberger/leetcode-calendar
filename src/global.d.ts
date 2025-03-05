@@ -1,4 +1,4 @@
-type yearType = number | "prev";
+type yearType = "Previous 365 Days" | "Year to Date";
 
 interface jsonData {
   [key: string]: number;
