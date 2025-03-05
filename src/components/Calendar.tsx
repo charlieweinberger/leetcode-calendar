@@ -1,8 +1,9 @@
 import { ActivityCalendar, Skeleton, ThemeInput } from "react-activity-calendar";
 
-export default function Calendar({ year, data }: {
+export default function Calendar({ year, data, loadingUsername }: {
   year: yearType
   data: Data
+  loadingUsername: boolean
 }) {
 
   const leetcodeTheme: ThemeInput = {
@@ -10,7 +11,7 @@ export default function Calendar({ year, data }: {
     dark: ["#393939", "#2b642a", "#459741", "#5fbf56", "#97df93"],
   };
 
-  if (!data.length) {
+  if (!data.length || loadingUsername) {
     return <Skeleton loading />;
   }
 

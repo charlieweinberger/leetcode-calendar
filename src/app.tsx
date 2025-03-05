@@ -5,9 +5,10 @@ import { fetchData } from "@/lib/getData";
 
 export default function App() {
 
-  const [ username, setUsername ] = useState<string>("");
+  const [ username, setUsername ] = useState("");
   const [ year, setYear ] = useState<yearType>(new Date().getUTCFullYear());
   const [ data, setData ] = useState<Data>([]);
+  const [ loadingUsername, setLoadingUsername ] = useState(true);
 
   // Get username from storage
   useEffect(() => {
@@ -15,6 +16,7 @@ export default function App() {
       if (result.username) {
         setUsername(result.username);
       }
+      setLoadingUsername(false);
     });
   }, [username]);
 
@@ -67,11 +69,13 @@ export default function App() {
           <Calendar
             year={year}
             data={data}
+            loadingUsername={loadingUsername}
           />
         </div>
         <Settings
           username={username}
           year={year}
+          loadingUsername={loadingUsername}
           updateUsername={updateUsername}
           updateYear={updateYear}
           updateCalendar={updateCalendar}

@@ -55,9 +55,10 @@ function YearDropdown({ options, yearInput, setYearInput }: {
   );
 }
 
-export default function Settings({ username, year, updateUsername, updateYear, updateCalendar }: {
+export default function Settings({ username, year, loadingUsername, updateUsername, updateYear, updateCalendar }: {
   username: string
   year: yearType
+  loadingUsername: boolean
   updateUsername: (username: string) => void
   updateYear: (year: yearType) => void
   updateCalendar: (usernameInput: string, newYear: yearType) => void
@@ -84,8 +85,11 @@ export default function Settings({ username, year, updateUsername, updateYear, u
     setOpen(false);
   };
 
+  console.log("\n\n\nusername is \"\":");
+  console.log(username === "");
+
   return (
-    <Dialog open={open || username === ""} onOpenChange={() => setOpen(!open)}>
+    <Dialog open={open || (username === "" && !loadingUsername)} onOpenChange={() => setOpen(!open)}>
       <DialogTrigger asChild>
         <Button
           onClick={() => setOpen(true)}
