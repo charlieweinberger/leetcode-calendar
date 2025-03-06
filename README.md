@@ -4,6 +4,12 @@
 
 <img src="./web-extension/public/screenshot.png" />
 
+## Links
+
+- Chrome Web Store: [Coming Soon]
+- Firefox Browser Add-Ons: [Coming Soon]
+- Privacy Policy: https://github.com/charlieweinberger/leetcode-calendar/blob/main/PRIVACY_POLICY.md
+
 ## How it works
 
 Leetcode Calendar is a chrome extension that shows a minimalist view of your leetcode submission history every time you open a new tab. Users can choose which account to view simply by inputting their username, and can also choose which time range to view (either the current year or the previous 365 days). Users can also submit feedback for future suggestions/bugs.
