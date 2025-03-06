@@ -108,7 +108,7 @@ export default function Feedback() {
               defaultValue={feedbackContent}
               placeholder="Type feedback here"
               onChange={(e) => setFeedbackContent(e.target.value)}
-              className="border-none bg-tertiary-background hover:bg-quaternary-background active:bg-quaternary-background selection:bg-leetcode-orange"
+              className="border-none max-h-96 bg-tertiary-background hover:bg-quaternary-background active:bg-quaternary-background selection:bg-leetcode-orange"
               required
             />
             <Label>Email</Label>
