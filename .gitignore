@@ -391,4 +391,5 @@ $RECYCLE.BIN/
 #generated manifest
 public/manifest.json
 
-leetcode-calendar-extension.zip
+# zip files
+*.zip
