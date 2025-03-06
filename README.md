@@ -1,8 +1,8 @@
 <h1 align="center">Leetcode Calendar</h1>
 
-<h3 align="center">View your leetcode progress in a github-like calendar chart every time you open a new tab!</h3>
+<h3 align="center">A chrome extension that displays your leetcode submission history every time you open a new tab!</h3>
 
-<img src="./web-extension/public/screenshot.png" />
+<img src="./public/screenshot.png" />
 
 ## Links
 

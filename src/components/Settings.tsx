@@ -38,7 +38,7 @@ function YearDropdown({ options, yearInput, setYearInput }: {
         <DropdownMenuRadioGroup
           value={yearInput}
           onValueChange={(value: string) => setYearInput(value as yearType)}
-          className="w-42 border-none flex flex-col gap-1"
+          className="w-46 border-none flex flex-col gap-1"
         >
           {options.map((option: string) => {
             return <DropdownMenuRadioItem
@@ -88,7 +88,7 @@ export default function Settings({ username, year, loadingUsername, updateUserna
           Settings
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-80 p-8 text-primary-text bg-secondary-background rounded-xl border-none">
+      <DialogContent className="w-88 p-8 text-primary-text bg-secondary-background rounded-xl border-none">
         <DialogHeader>
           <DialogTitle>Settings</DialogTitle>
           <DialogDescription className="text-secondary-text">
@@ -96,7 +96,7 @@ export default function Settings({ username, year, loadingUsername, updateUserna
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <div className="grid grid-cols-[33%_67%] gap-y-4">
+          <div className="grid grid-cols-[30%_70%] gap-y-4">
             <Label>Username</Label>
             <Input
               defaultValue={username}

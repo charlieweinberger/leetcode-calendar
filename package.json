@@ -1,6 +1,6 @@
 {
   "name": "leetcode-calendar-web-extension",
-  "description": "View your leetcode progress in a calendar when you open a new tab!",
+  "description": "A chrome extension that displays your leetcode submission history every time you open a new tab!",
   "version": "1.4.0",
   "license": "MIT",
   "repository": {
