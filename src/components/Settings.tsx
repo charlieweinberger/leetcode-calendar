@@ -55,13 +55,12 @@ function YearDropdown({ options, yearInput, setYearInput }: {
   );
 }
 
-export default function Settings({ username, year, loadingUsername, updateUsername, updateYear, updateCalendar }: {
+export default function Settings({ username, year, loadingUsername, updateUsername, updateYear }: {
   username: string
   year: yearType
   loadingUsername: boolean
   updateUsername: (username: string) => void
   updateYear: (year: yearType) => void
-  updateCalendar: (usernameInput: string, newYear: yearType) => void
 }) {
 
   const [ open, setOpen ] = useState(false);
@@ -70,11 +69,8 @@ export default function Settings({ username, year, loadingUsername, updateUserna
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Update username, year, and calendar
     updateUsername(usernameInput);
     updateYear(yearInput);
-    updateCalendar(usernameInput, yearInput);
-    // reset variables
     setOpen(false);
   };
 
