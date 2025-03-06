@@ -2,7 +2,7 @@
 
 <h3 align="center">View your leetcode progress in a github-like calendar when you open a new tab!</h3>
 
-<img src="./public/screenshot.png" />
+<img src="./web-extension/public/screenshot.png" />
 
 ## How it works
 
