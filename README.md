@@ -1,12 +1,12 @@
-<h1 align="center">Leetcode Calendar Extension</h1>
+<h1 align="center">Leetcode Calendar</h1>
 
-<h3 align="center">View your leetcode progress in a github-like calendar when you open a new tab!</h3>
+<h3 align="center">View your leetcode progress in a github-like calendar chart every time you open a new tab!</h3>
 
 <img src="./web-extension/public/screenshot.png" />
 
 ## How it works
 
-Leetcode Calendar Extension is a chrome extension that shows a minimalist view of your leetcode submission history every time you open a new tab. Users can choose which account to view simply by inputting their username, and can also choose which time range to view (either the current year or the previous 365 days). Users can also submit feedback for future suggestions/bugs.
+Leetcode Calendar is a chrome extension that shows a minimalist view of your leetcode submission history every time you open a new tab. Users can choose which account to view simply by inputting their username, and can also choose which time range to view (either the current year or the previous 365 days). Users can also submit feedback for future suggestions/bugs.
 
 ## Tech Stack
 
