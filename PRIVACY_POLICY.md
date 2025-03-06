@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Leetcode Calendar does not and has no intention of using your personal data in any way. Below is an explanation of how this extension ensures your privacy.
+Leetcode Calendar does not use and has no intention of using your personal data in any way. Below is an explanation of how this extension ensures your privacy.
 
 *Last Edited: 03/05/25*
 
