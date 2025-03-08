@@ -11,49 +11,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
-import { ChevronDown } from "lucide-react";
-
-function YearDropdown({ options, yearInput, setYearInput }: {
-  options: yearType[]
-  yearInput: yearType
-  setYearInput: (yearInput: yearType) => void
-}) {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild className="bg-tertiary-background hover:bg-quaternary-background active:bg-quaternary-background font-normal">
-        <Button className="flex flex-row justify-between">
-          {yearInput}
-          <ChevronDown />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="border-none bg-tertiary-background text-primary-text p-2">
-        <DropdownMenuRadioGroup
-          value={yearInput}
-          onValueChange={(value: string) => setYearInput(value as yearType)}
-          className="w-46 border-none flex flex-col gap-1"
-        >
-          {options.map((option: string) => {
-            return <DropdownMenuRadioItem
-              key={option}
-              value={option}
-              className={`${option === yearInput ? "bg-quaternary-background" : ""} focus:bg-quaternary-background active:bg-quaternary-background`}
-            >
-              {option}
-            </DropdownMenuRadioItem>
-          })}
-        </DropdownMenuRadioGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
+import Dropdown from "@/components/Dropdown";
 
 export default function Settings({ username, year, loadingUsername, updateUsername, updateYear }: {
   username: string
@@ -101,10 +60,11 @@ export default function Settings({ username, year, loadingUsername, updateUserna
               className="border-none bg-tertiary-background hover:bg-quaternary-background active:bg-quaternary-background selection:bg-leetcode-orange"
             />
             <Label>Year Type</Label>
-            <YearDropdown
+            <Dropdown
               options={["Year to Date", "Previous 365 Days"]}
-              yearInput={yearInput}
-              setYearInput={setYearInput}
+              input={yearInput}
+              setInput={setYearInput}
+              width={"w-46"}
             />
           </div>
           <Button type="submit" className="bg-leetcode-orange hover:bg-leetcode-orange/80 font-bold">
