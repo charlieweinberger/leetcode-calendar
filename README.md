@@ -1,18 +1,17 @@
 <h1 align="center">Leetcode Calendar</h1>
 
-<h3 align="center">A chrome extension that displays your leetcode submission history every time you open a new tab!</h3>
+<h3 align="center">A chrome extension that displays your leetcode submission history as a heatmap/calendar every time you open a new tab!</h3>
 
 <img src="./public/screenshot.png" />
 
 ## Links
 
 - Chrome Web Store: [Coming Soon]
-- Firefox Browser Add-Ons: [Coming Soon]
 - Privacy Policy: https://github.com/charlieweinberger/leetcode-calendar/blob/main/PRIVACY_POLICY.md
 
 ## How it works
 
-Leetcode Calendar is a chrome extension that shows a minimalist view of your leetcode submission history every time you open a new tab. Users can choose which account to view simply by inputting their username, and can also choose which time range to view (either the current year or the previous 365 days). Users can also submit feedback for future suggestions/bugs.
+Leetcode Calendar is a chrome extension that shows a minimalist view of your leetcode submission history as a heatmap/calendar every time you open a new tab. You can choose which account to view simply by inputting your leetcode username, and you can choose which time range to view (either the current year or the previous 365 days). You can also submit feedback for future suggestions/bugs.
 
 ## Tech Stack
 
@@ -23,8 +22,9 @@ Leetcode Calendar is a chrome extension that shows a minimalist view of your lee
 
 ## Future improvements
 
-- More customization and interactivity (for example, theme settings and tooltips)
-- More leetcode profile information
-- Displaying information about multiple leetcode accounts
-- A leaderboard to compete against others
-- Similar chrome extensions for GitHub and WakaTime
+- [ ] More leetcode profile statistics
+- [ ] A weekly leaderboard
+- [ ] More customization and interactivity (for example, theme settings and tooltips)
+- [ ] Caching data so it doesn't fetch the API on every new tab
+- [ ] Support for Firefox
+- [ ] Expansion to GitHub and WakaTime
