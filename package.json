@@ -55,6 +55,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
     "vite": "^6.1.0",
+    "vite-plugin-radar": "^0.10.0",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }
