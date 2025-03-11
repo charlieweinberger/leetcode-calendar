@@ -6,7 +6,7 @@
 
 ## Links
 
-- Chrome Web Store: [Coming Soon]
+- Chrome Web Store: https://chromewebstore.google.com/detail/leetcode-calendar/adakeigfgmhioifigjibpjdbgnanogkc
 - Privacy Policy: https://github.com/charlieweinberger/leetcode-calendar/blob/main/PRIVACY_POLICY.md
 
 ## How it works
@@ -17,7 +17,7 @@ Leetcode Calendar is a chrome extension that shows a minimalist view of your lee
 
 - Frontend: React, Vite, TypeScript
 - Styling: Tailwind CSS, shadcn/ui
-- Backend: Leetcode GraphQL API, Chrome Storage API
+- APIs: Leetcode GraphQL API, Chrome Storage API
 - Email Feedback: Resend
 
 ## Future improvements
