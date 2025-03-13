@@ -7,6 +7,7 @@ export default function App() {
 
   const [ username, setUsername ] = useState("");
   const [ year, setYear ] = useState<yearType>("Previous 365 Days");
+  const [ showTitle, setShowTitle ] = useState<showTitleType>("Yes");
   const [ loadingUsername, setLoadingUsername ] = useState(true);
 
   // Get username from storage
@@ -34,12 +35,22 @@ export default function App() {
     chrome.storage.sync.set({ "year": newYear }, () => setYear(newYear));
   };
 
+  // Get showTitle from storage
+  useEffect(() => {
+    chrome.storage.sync.get(["showTitle"], (result) => setShowTitle(result.showTitle ?? showTitle));
+  }, [showTitle]);
+
+  // Update showTitle in storage
+  const updateShowTitle = (showTitle: showTitleType) => {
+    chrome.storage.sync.set({ "showTitle": showTitle }, () => setShowTitle(showTitle));
+  };
+
   return (
-    <div className="h-screen bg-primary-background flex flex-col gap-12 items-center">
-      <div className="mt-48 px-8 flex flex-col items-center justify-center gap-2 text-6xl text-primary-text text-center font-bold">
+    <div className="h-screen bg-primary-background flex flex-col justify-center items-center gap-12">
+      {(showTitle === "Yes") && <div className="px-8 flex flex-col items-center justify-center gap-2 text-6xl text-primary-text text-center font-bold">
         <p>Leetcode Calendar for</p>
         <span className="text-leetcode-orange">{username}</span>
-      </div>
+      </div>}
       <div className="flex flex-col items-center gap-6">
         <div className="p-8 bg-secondary-background rounded-xl">
           <Calendar
@@ -51,9 +62,11 @@ export default function App() {
           <Settings
             username={username}
             year={year}
+            showTitle={showTitle}
             loadingUsername={loadingUsername}
             updateUsername={updateUsername}
             updateYear={updateYear}
+            updateShowTitle={updateShowTitle}
           />
           <Feedback />
         </div>

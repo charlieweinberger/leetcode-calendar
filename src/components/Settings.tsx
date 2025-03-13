@@ -14,22 +14,26 @@ import {
 
 import Dropdown from "@/components/Dropdown";
 
-export default function Settings({ username, year, loadingUsername, updateUsername, updateYear }: {
+export default function Settings({ username, year, showTitle, loadingUsername, updateUsername, updateYear, updateShowTitle }: {
   username: string
   year: yearType
+  showTitle: showTitleType
   loadingUsername: boolean
   updateUsername: (username: string) => void
   updateYear: (year: yearType) => void
+  updateShowTitle: (showTitle: showTitleType) => void
 }) {
 
   const [ open, setOpen ] = useState(false);
-  const [ usernameInput, setUsernameInput ] = useState<string>(username);
+  const [ usernameInput, setUsernameInput ] = useState(username);
   const [ yearInput, setYearInput ] = useState<yearType>(year);
+  const [ showTitleInput, setShowTitleInput ] = useState<showTitleType>(showTitle);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     updateUsername(usernameInput);
     updateYear(yearInput);
+    updateShowTitle(showTitleInput);
     setOpen(false);
   };
 
@@ -64,6 +68,13 @@ export default function Settings({ username, year, loadingUsername, updateUserna
               options={["Year to Date", "Previous 365 Days"]}
               input={yearInput}
               setInput={setYearInput}
+              width={"w-46"}
+            />
+            <Label>Show Title</Label>
+            <Dropdown
+              options={["Yes", "No"]}
+              input={showTitleInput}
+              setInput={setShowTitleInput}
               width={"w-46"}
             />
           </div>

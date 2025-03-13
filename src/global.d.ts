@@ -1,4 +1,9 @@
+// Settings types
+
 type yearType = "Year to Date" | "Previous 365 Days";
+type showTitleType = "Yes" | "No";
+
+// Data
 
 interface jsonData {
   [key: string]: number;
@@ -11,6 +16,8 @@ interface Datum {
 }
 
 type Data = Datum[];
+
+// Feedback
 
 interface Feedback {
   feedbackType: FeedbackType
