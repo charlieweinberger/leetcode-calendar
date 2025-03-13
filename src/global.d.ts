@@ -2,6 +2,7 @@
 
 type yearType = "Year to Date" | "Previous 365 Days";
 type showTitleType = "Yes" | "No";
+type colorType = "Green" | "Orange";
 
 // Data
 

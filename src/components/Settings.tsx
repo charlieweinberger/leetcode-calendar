@@ -14,31 +14,47 @@ import {
 
 import Dropdown from "@/components/Dropdown";
 
-export default function Settings({ username, year, showTitle, loadingUsername, updateUsername, updateYear, updateShowTitle }: {
-  username: string
-  year: yearType
-  showTitle: showTitleType
-  loadingUsername: boolean
-  updateUsername: (username: string) => void
-  updateYear: (year: yearType) => void
-  updateShowTitle: (showTitle: showTitleType) => void
+export default function Settings({
+  username,
+  year,
+  showTitle,
+  color,
+  loadingUsername,
+  updateUsername,
+  updateYear,
+  updateShowTitle,
+  updateColor,
+}: {
+  username: string;
+  year: yearType;
+  showTitle: showTitleType;
+  color: colorType;
+  loadingUsername: boolean;
+  updateUsername: (username: string) => void;
+  updateYear: (year: yearType) => void;
+  updateShowTitle: (showTitle: showTitleType) => void;
+  updateColor: (color: colorType) => void;
 }) {
-
-  const [ open, setOpen ] = useState(false);
-  const [ usernameInput, setUsernameInput ] = useState(username);
-  const [ yearInput, setYearInput ] = useState<yearType>(year);
-  const [ showTitleInput, setShowTitleInput ] = useState<showTitleType>(showTitle);
+  const [open, setOpen] = useState(false);
+  const [usernameInput, setUsernameInput] = useState(username);
+  const [yearInput, setYearInput] = useState<yearType>(year);
+  const [showTitleInput, setShowTitleInput] = useState<showTitleType>(showTitle);
+  const [colorInput, setColorInput] = useState<colorType>(color);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     updateUsername(usernameInput);
     updateYear(yearInput);
     updateShowTitle(showTitleInput);
+    updateColor(colorInput);
     setOpen(false);
   };
 
   return (
-    <Dialog open={open || (username === "" && !loadingUsername)} onOpenChange={() => setOpen(!open)}>
+    <Dialog
+      open={open || (username === "" && !loadingUsername)}
+      onOpenChange={() => setOpen(!open)}
+    >
       <DialogTrigger asChild>
         <Button
           onClick={() => setOpen(true)}
@@ -77,8 +93,18 @@ export default function Settings({ username, year, showTitle, loadingUsername, u
               setInput={setShowTitleInput}
               width={"w-46"}
             />
+            <Label>Color</Label>
+            <Dropdown
+              options={["Green", "Orange"]}
+              input={colorInput}
+              setInput={setColorInput}
+              width={"w-46"}
+            />
           </div>
-          <Button type="submit" className="bg-leetcode-orange hover:bg-leetcode-orange/80 font-bold">
+          <Button
+            type="submit"
+            className="bg-leetcode-orange hover:bg-leetcode-orange/80 font-bold"
+          >
             Save
           </Button>
         </form>
