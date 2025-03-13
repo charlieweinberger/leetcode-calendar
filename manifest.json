@@ -5,7 +5,7 @@
   "description": "A chrome extension that displays your leetcode submission history as a heatmap/calendar every time you open a new tab!",
   "action": {
     "default_icon": {
-      "32": "icon-32.png"
+      "32": "icons/icon-32.png"
     }
   },
   "chrome_url_overrides": {
@@ -19,15 +19,15 @@
     "https://api.resend.com/emails"
   ],
   "icons": {
-    "96": "icon-96.png",
-    "128": "icon-128.png"
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
   },
   "web_accessible_resources": [
     {
       "resources": [
-        "icon-32.png",
-        "icon-96.png",
-        "icon-128.png"
+        "icons/icon-32.png",
+        "icons/icon-96.png",
+        "icons/icon-128.png"
       ],
       "matches": []
     }

@@ -2,7 +2,7 @@
 
 <h3 align="center">A chrome extension that displays your leetcode submission history as a heatmap/calendar every time you open a new tab!</h3>
 
-<img src="./public/screenshot.png" />
+<img src="./public/screenshots/green.png" />
 
 ## Links
 
