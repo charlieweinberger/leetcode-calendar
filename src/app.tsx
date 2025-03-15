@@ -43,10 +43,8 @@ export default function App() {
     );
   }, [showTitle]);
 
-  const updateShowTitle = (showTitle: showTitleType) => {
-    chrome.storage.sync.set({ showTitle: showTitle }, () =>
-      setShowTitle(showTitle)
-    );
+  const updateShowTitle = (newShowTitle: showTitleType) => {
+    chrome.storage.sync.set({ showTitle: newShowTitle }, () => setShowTitle(newShowTitle));
   };
 
   // Get/set color to/from storage
@@ -56,8 +54,8 @@ export default function App() {
     );
   }, [color]);
 
-  const updateColor = (color: colorType) => {
-    chrome.storage.sync.set({ color: color }, () => setColor(color));
+  const updateColor = (newColor: colorType) => {
+    chrome.storage.sync.set({ color: newColor }, () => setColor(newColor));
   };
 
   return (
