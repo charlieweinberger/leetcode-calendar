@@ -56,6 +56,7 @@ export default function Calendar({
           cloneElement(block, {
             'data-tooltip-id': 'react-tooltip',
             'data-tooltip-html': (activity.count !== 0) ? `${activity.count} activities on ${activity.date}` : "",
+            style: { outline: 'none' }
           })
         }
       />
@@ -63,7 +64,7 @@ export default function Calendar({
         id="react-tooltip"
         style={{
           backgroundColor: "var(--color-tertiary-background)",
-          color: "var(--color-primary-text)"
+          color: "var(--color-primary-text)",
         }}
       />
     </div>
