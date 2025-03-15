@@ -16,6 +16,7 @@ Do you want to spend more time doing leetcode, but keep putting it off or forget
 ## Current Features
 
 - Display data for any leetcode username
+- Display tooltip for showing submissions for any day
 - Toggle whether to view data in the current year (2025) or previous 365 days
 - Toggle whether or not to view the title text
 - Toggle whether to view a green colorway vs. orange colorway
@@ -23,11 +24,11 @@ Do you want to spend more time doing leetcode, but keep putting it off or forget
 
 ## Future Improvements
 
+- [ ] Support for Firefox
 - [ ] More leetcode profile statistics
 - [ ] A weekly leaderboard
-- [ ] More customization and interactivity (for example, theme settings and tooltips)
+- [ ] More customization and interactivity
 - [ ] Caching data so it doesn't fetch the API on every new tab
-- [ ] Support for Firefox
 - [ ] Expansion to GitHub and WakaTime
 
 ## Tech Stack
