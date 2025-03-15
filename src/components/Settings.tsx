@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -40,6 +40,10 @@ export default function Settings({
   const [yearInput, setYearInput] = useState<yearType>(year);
   const [showTitleInput, setShowTitleInput] = useState<showTitleType>(showTitle);
   const [colorInput, setColorInput] = useState<colorType>(color);
+
+  useEffect(() => setYearInput(year), [year]);
+  useEffect(() => setShowTitleInput(showTitle), [showTitle]);
+  useEffect(() => setColorInput(color), [color]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
