@@ -20,7 +20,7 @@ Do you want to spend more time doing leetcode, but keep putting it off or forget
 - Toggle whether to view data in the current year (2025) or previous 365 days
 - Toggle whether or not to view the title text
 - Toggle whether to view a green colorway vs. orange colorway
-- Submit user feedback (within the extension)
+- Submit user feedback within the extension
 
 ## Future Improvements
 
@@ -37,3 +37,11 @@ Do you want to spend more time doing leetcode, but keep putting it off or forget
 - Styling: Tailwind CSS, shadcn/ui
 - APIs: Leetcode GraphQL API, Chrome Storage API
 - Email Feedback: Resend
+
+## Changelog
+
+Version 1.0.0: Added calendar, title, and settings for username and year
+Version 1.1.0: Fixed extension so it can be published on the chrome web store
+Version 1.1.1: Added google analytics
+Version 1.2.1: Added ability to toggle title on/off and colorway green/orange
+Version 1.3.0: Added tooltips, fixed bug in settings, removed google analytics
