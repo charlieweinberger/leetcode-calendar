@@ -1,17 +1,18 @@
 <h1 align="center">Leetcode Calendar</h1>
 
-<h3 align="center">A chrome extension that displays your leetcode submission history as a heatmap/calendar every time you open a new tab!</h3>
+<h3 align="center">A web extension that displays your leetcode submission history as a heatmap/calendar every time you open a new tab!</h3>
 
 <img src="./public/screenshots/green.png" />
 
 ## Links
 
 - Chrome Web Store: https://chromewebstore.google.com/detail/leetcode-calendar/adakeigfgmhioifigjibpjdbgnanogkc
+- Firefox Add-On: [Coming Soon!]
 - Privacy Policy: https://github.com/charlieweinberger/leetcode-calendar/blob/main/PRIVACY_POLICY.md
 
 ## Description
 
-Do you want to spend more time doing leetcode, but keep putting it off or forgetting to make time for it? If so, then this chrome extension is for you. Leetcode Calendar is a chrome extension that shows a minimalist view of your leetcode submission history as a heatmap/calendar every time you open a new tab. By reminding you of your leetcode progress every time you open a new tab, you'll never forget to do your daily leetcode problem to get that green square.
+Do you want to spend more time doing leetcode, but keep putting it off or forgetting to make time for it? If so, then this web extension is for you. Leetcode Calendar is a web extension that shows a minimalist view of your leetcode submission history as a heatmap/calendar every time you open a new tab. By reminding you of your leetcode progress every time you open a new tab, you'll never forget to do your daily leetcode problem to get that green square.
 
 ## Current Features
 

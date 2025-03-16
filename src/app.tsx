@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import browser from "webextension-polyfill";
+
 import Calendar from "@/components/Calendar";
 import Settings from "@/components/Settings";
 import Feedback from "@/components/Feedback";
@@ -11,51 +13,48 @@ export default function App() {
 
   const [loadingUsername, setLoadingUsername] = useState(true);
 
-  // Get/set username to/from storage
+  // Get data from browser storage
   useEffect(() => {
-    chrome.storage.sync.get(["username"], (result) => {
-      setUsername(result.username ?? username);
-      setLoadingUsername(false);
-    });
-  }, [username]);
+    browser.storage.sync.get(["username", "year", "showTitle", "color"]).then(
+      (result: {
+        username?: string;
+        year?: yearType;
+        showTitle?: showTitleType;
+        color?: colorType;
+      }) => {
+        setUsername(result.username ?? username);
+        setLoadingUsername(false);
+        setYear(result.year ?? year);
+        setShowTitle(result.showTitle ?? showTitle);
+        setColor(result.color ?? color);
+      },
+      (error) => {
+        console.log(`Error getting data from browser storage: ${error}`);
+      }
+    );
+  }, [username, year, showTitle, color]);
 
+  // Set data to browser storage
   const updateUsername = (input: string) => {
     const newUsername = input.toLowerCase().trim();
     if (!newUsername) return;
-    chrome.storage.sync.set({ username: newUsername }, () =>
-      setUsername(newUsername)
-    );
+    setUsername(newUsername);
+    browser.storage.sync.set({ username: newUsername });
   };
-
-  // Get/set year to/from storage
-  useEffect(() => {
-    chrome.storage.sync.get(["year"], (result) => setYear(result.year ?? year));
-  }, [year]);
 
   const updateYear = (newYear: yearType) => {
-    chrome.storage.sync.set({ year: newYear }, () => setYear(newYear));
+    setYear(newYear);
+    browser.storage.sync.set({ year: newYear });
   };
-
-  // Get/set showTitle to/from storage
-  useEffect(() => {
-    chrome.storage.sync.get(["showTitle"], (result) =>
-      setShowTitle(result.showTitle ?? showTitle)
-    );
-  }, [showTitle]);
 
   const updateShowTitle = (newShowTitle: showTitleType) => {
-    chrome.storage.sync.set({ showTitle: newShowTitle }, () => setShowTitle(newShowTitle));
+    setShowTitle(newShowTitle);
+    browser.storage.sync.set({ showTitle: newShowTitle });
   };
 
-  // Get/set color to/from storage
-  useEffect(() => {
-    chrome.storage.sync.get(["color"], (result) =>
-      setColor(result.color ?? color)
-    );
-  }, [color]);
-
   const updateColor = (newColor: colorType) => {
-    chrome.storage.sync.set({ color: newColor }, () => setColor(newColor));
+    setColor(newColor);
+    browser.storage.sync.set({ color: newColor });
   };
 
   return (
