@@ -2,11 +2,11 @@
 
 Leetcode Calendar does not use and has no intention of using your personal data in any way. Below is an explanation of how this extension ensures your privacy.
 
-*Last Edited: 03/05/25*
+*Last Edited: 03/16/25*
 
-## Chrome Storage API
+## Web Storage API
 
-Leetcode Calendar uses [Google Chrome's Storage API](https://developer.chrome.com/docs/extensions/reference/api/storage) to store your username and year display type locally in your browser. The extension does not do anything else with your data, and there is no way for anyone but you to access your data.
+Leetcode Calendar uses the [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) to store your username and year display type locally in your browser. The extension does not do anything else with your data, and there is no way for anyone but you to access your data.
 
 ## Third-Party APIs
 
