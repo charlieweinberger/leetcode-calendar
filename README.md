@@ -36,7 +36,7 @@ Do you want to spend more time doing leetcode, but keep putting it off or forget
 
 - Frontend: React, Vite, TypeScript
 - Styling: Tailwind CSS, shadcn/ui
-- APIs: Leetcode GraphQL API, Resend (email), browser storage API
+- APIs: Leetcode GraphQL API, Web Storage API, Resend
 
 ## Changelog
 
