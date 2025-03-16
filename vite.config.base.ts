@@ -7,7 +7,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import manifest from './manifest.json';
 import pkg from './package.json';
 
-
 const isDev = process.env.__DEV__ === "true";
 
 export const baseManifest = {

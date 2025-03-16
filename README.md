@@ -36,13 +36,13 @@ Do you want to spend more time doing leetcode, but keep putting it off or forget
 
 - Frontend: React, Vite, TypeScript
 - Styling: Tailwind CSS, shadcn/ui
-- APIs: Leetcode GraphQL API, Chrome Storage API
-- Email Feedback: Resend
+- APIs: Leetcode GraphQL API, Resend (email), browser storage API
 
 ## Changelog
 
-Version 1.0.0: Added calendar, title, and settings for username and year
-Version 1.1.0: Fixed extension so it can be published on the chrome web store
-Version 1.1.1: Added google analytics
-Version 1.2.1: Added ability to toggle title on/off and colorway green/orange
-Version 1.3.0: Added tooltips, fixed bug in settings, removed google analytics
+- Version 1.0.0: Added calendar, title, and settings for username and year
+- Version 1.1.0: Added support for Chrome Web Store
+- Version 1.1.1: Added Google Analytics
+- Version 1.2.1: Added ability to toggle title on/off and colorway green/orange
+- Version 1.3.0: Added tooltips, fixed bug in settings, removed Google Analytics
+<!-- - Version 1.4.0: Added support for Firefox Add-Ons -->
