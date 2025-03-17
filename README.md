@@ -7,7 +7,7 @@
 ## Links
 
 - Chrome Web Store: https://chromewebstore.google.com/detail/leetcode-calendar/adakeigfgmhioifigjibpjdbgnanogkc
-- Firefox Add-On: [Coming Soon!]
+- Firefox Add-On: https://addons.mozilla.org/en-US/firefox/addon/leetcode-calendar/
 - Privacy Policy: https://github.com/charlieweinberger/leetcode-calendar/blob/main/PRIVACY_POLICY.md
 
 ## Description
@@ -25,12 +25,11 @@ Do you want to spend more time doing leetcode, but keep putting it off or forget
 
 ## Future Improvements
 
-- [ ] Support for Firefox
-- [ ] More leetcode profile statistics
-- [ ] A weekly leaderboard
-- [ ] More customization and interactivity
-- [ ] Caching data so it doesn't fetch the API on every new tab
-- [ ] Expansion to GitHub and WakaTime
+- More leetcode profile statistics
+- A weekly leaderboard
+- More customization and interactivity
+- Caching data so it doesn't fetch the API on every new tab
+- Expansion to GitHub and WakaTime
 
 ## Tech Stack
 
@@ -45,4 +44,4 @@ Do you want to spend more time doing leetcode, but keep putting it off or forget
 - Version 1.1.1: Added Google Analytics
 - Version 1.2.1: Added ability to toggle title on/off and colorway green/orange
 - Version 1.3.0: Added tooltips, fixed bug in settings, removed Google Analytics
-<!-- - Version 1.4.0: Added support for Firefox Add-Ons -->
+- Version 1.4.0: Added support for Firefox
