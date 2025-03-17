@@ -31,12 +31,6 @@ Do you want to spend more time doing leetcode, but keep putting it off or forget
 - Caching data so it doesn't fetch the API on every new tab
 - Expansion to GitHub and WakaTime
 
-## Tech Stack
-
-- Frontend: React, Vite, TypeScript
-- Styling: Tailwind CSS, shadcn/ui
-- APIs: Leetcode GraphQL API, Web Storage API, Resend
-
 ## Changelog
 
 - Version 1.0.0: Added calendar, title, and settings for username and year
