@@ -16,48 +16,48 @@ import Dropdown from "@/components/Dropdown";
 
 export default function Settings({
   username,
-  calendarType,
-  year,
+  dataSource,
+  timeRange,
   showTitle,
-  color,
+  // colorway,
   loadingUsername,
   updateUsername,
-  updateCalendarType,
-  updateYear,
+  updateDataSource,
+  updateTimeRange,
   updateShowTitle,
-  updateColor,
+  // updateColorway,
 }: {
   username: string;
-  calendarType: calendarType;
-  year: yearType;
-  showTitle: showTitleType;
-  color: colorType;
+  dataSource: DataSourceType;
+  timeRange: TimeRangeType;
+  showTitle: boolean;
+  // colorway: ColorwayType;
   loadingUsername: boolean;
   updateUsername: (username: string) => void;
-  updateCalendarType: (calendarType: calendarType) => void;
-  updateYear: (year: yearType) => void;
-  updateShowTitle: (showTitle: showTitleType) => void;
-  updateColor: (color: colorType) => void;
+  updateDataSource: (dataSource: DataSourceType) => void;
+  updateTimeRange: (timeRange: TimeRangeType) => void;
+  updateShowTitle: (showTitle: boolean) => void;
+  // updateColorway: (colorway: ColorwayType) => void;
 }) {
-  const [open, setOpen] = useState(false);
   const [usernameInput, setUsernameInput] = useState(username);
-  const [calendarTypeInput, setCalendarTypeInput] = useState<calendarType>(calendarType);
-  const [yearInput, setYearInput] = useState<yearType>(year);
-  const [showTitleInput, setShowTitleInput] = useState<showTitleType>(showTitle);
-  const [colorInput, setColorInput] = useState<colorType>(color);
+  const [dataSourceInput, setDataSourceInput] = useState<DataSourceType>(dataSource);
+  const [timeRangeInput, setTimeRangeInput] = useState<TimeRangeType>(timeRange);
+  const [showTitleInput, setShowTitleInput] = useState<boolean>(showTitle);
+  // const [colorwayInput, setColorwayInput] = useState<ColorwayType>(colorway);
+  const [open, setOpen] = useState(false);
 
-  useEffect(() => setCalendarTypeInput(calendarType), [calendarType]);
-  useEffect(() => setYearInput(year), [year]);
+  useEffect(() => setDataSourceInput(dataSource), [dataSource]);
+  useEffect(() => setTimeRangeInput(timeRange), [timeRange]);
   useEffect(() => setShowTitleInput(showTitle), [showTitle]);
-  useEffect(() => setColorInput(color), [color]);
+  // useEffect(() => setColorwayInput(colorway), [colorway]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     updateUsername(usernameInput);
-    updateCalendarType(calendarTypeInput);
-    updateYear(yearInput);
+    updateDataSource(dataSourceInput);
+    updateTimeRange(timeRangeInput);
     updateShowTitle(showTitleInput);
-    updateColor(colorInput);
+    // updateColorway(colorwayInput);
     setOpen(false);
   };
 
@@ -69,12 +69,14 @@ export default function Settings({
       <DialogTrigger asChild>
         <Button
           onClick={() => setOpen(true)}
-          className="bg-secondary-background hover:bg-tertiary-background"
+          className={`bg-${dataSource}-bg-2 hover:bg-${dataSource}-bg-3`}
         >
           Settings
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-88 p-8 text-primary-text bg-secondary-background rounded-xl border-none">
+      <DialogContent
+        className={`w-88 p-8 text-${dataSource}-text-1 bg-${dataSource}-bg-2 rounded-xl border-none`}
+      >
         <DialogHeader>
           <DialogTitle>Settings</DialogTitle>
           <DialogDescription className="text-secondary-text">
@@ -88,40 +90,51 @@ export default function Settings({
               defaultValue={username}
               placeholder="username"
               onChange={(e) => setUsernameInput(e.target.value)}
-              className="border-none bg-tertiary-background hover:bg-quaternary-background active:bg-quaternary-background selection:bg-leetcode-orange"
+              className={`border-none bg-${dataSource}-bg-3 hover:bg-${dataSource}-bg-4 active:bg-${dataSource}-bg-4 selection:bg-${dataSource}`}
             />
-            <Label>Data Type</Label>
+            <Label>Data Source</Label>
             <Dropdown
-              options={["GitHub", "LeetCode"]}
-              input={calendarTypeInput}
-              setInput={setCalendarTypeInput}
+              options={["GitHub", "LeetCode", "WakaTime"]}
+              input={dataSourceInput}
+              setInput={setDataSourceInput}
               width={"w-46"}
             />
-            <Label>Year Type</Label>
+            <Label>Time Range</Label>
             <Dropdown
               options={["Year to Date", "Previous 365 Days"]}
-              input={yearInput}
-              setInput={setYearInput}
+              input={timeRangeInput}
+              setInput={setTimeRangeInput}
               width={"w-46"}
             />
             <Label>Show Title</Label>
             <Dropdown
-              options={["Yes", "No"]}
+              options={[true, false]}
+              optionsDisplayMap={
+                new Map<boolean, string>([
+                  [true, "Yes"],
+                  [false, "No"],
+                ])
+              }
               input={showTitleInput}
               setInput={setShowTitleInput}
               width={"w-46"}
             />
-            <Label>Color</Label>
+            {/* <Label>Colorway</Label>
             <Dropdown
-              options={["Green", "Orange"]}
-              input={colorInput}
-              setInput={setColorInput}
+              options={[
+                "GitHub",
+                "LeetCode (Green)",
+                "LeetCode (Orange)",
+                "WakaTime",
+              ]}
+              input={colorwayInput}
+              setInput={setColorwayInput}
               width={"w-46"}
-            />
+            /> */}
           </div>
           <Button
             type="submit"
-            className="bg-leetcode-orange hover:bg-leetcode-orange/80 font-bold"
+            className={`bg-${dataSource} hover:bg-${dataSource}/80 font-bold`}
           >
             Save
           </Button>

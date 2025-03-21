@@ -8,11 +8,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 
-export default function Dropdown<T>({ options, input, setInput, width }: {
-  options: T[]
-  input: T
-  setInput: (input: T) => void
-  width: string
+export default function Dropdown<T>({ options, optionsDisplayMap = undefined, input, setInput, width }: {
+  options: T[];
+  optionsDisplayMap?: Map<T, string> | undefined;
+  input: T;
+  setInput: (input: T) => void;
+  width: string;
 }) {
   return (
     <DropdownMenu>
@@ -34,7 +35,7 @@ export default function Dropdown<T>({ options, input, setInput, width }: {
               value={option as string}
               className={`${option === input ? "bg-quaternary-background" : ""} focus:bg-quaternary-background active:bg-quaternary-background`}
             >
-              {option as string}
+              {optionsDisplayMap?.get(option) ?? option as string}
             </DropdownMenuRadioItem>
           })}
         </DropdownMenuRadioGroup>

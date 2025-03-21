@@ -1,13 +1,12 @@
 // Settings types
 
-type dataSourceType = "GitHub" | "LeetCode" | "WakaTime";
-type timeRangeType = "Year to Date" | "Previous 365 Days";
-type showTitleType = "Yes" | "No";
-type colorType = "Green" | "Orange";
+type DataSourceType = "GitHub" | "LeetCode" | "WakaTime";
+type TimeRangeType = "Year to Date" | "Previous 365 Days";
+// type ColorwayType = "GitHub" | "LeetCode (Green)" | "LeetCode (Orange)" | "WakaTime";
 
 // Data
 
-interface jsonData {
+interface JSONData {
   [key: string]: number;
 }
 
@@ -19,6 +18,8 @@ interface Datum {
 
 type Data = Datum[];
 
+type ActivityUnitType = "contributions" | "submissions" | "minutes";
+
 // Feedback
 
 interface Feedback {
@@ -27,4 +28,4 @@ interface Feedback {
   userEmail?: string
 }
 
-type feedbackType = "Suggestion" | "Bug";
+type FeedbackType = "Suggestion" | "Bug";

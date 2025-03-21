@@ -19,7 +19,7 @@ import sendEmail from "@/api/email/sendEmail";
 export default function Feedback() {
 
   const [ open, setOpen ] = useState(false);
-  const [ feedbackType, setFeedbackType ] = useState<feedbackType>("Suggestion");
+  const [ feedbackType, setFeedbackType ] = useState<FeedbackType>("Suggestion");
   const [ feedbackContent, setFeedbackContent ] = useState<string>("");
   const [ userEmail, setUserEmail ] = useState<string>("");
 

@@ -7,35 +7,49 @@ import Feedback from "@/components/Feedback";
 
 export default function App() {
   const [username, setUsername] = useState("");
-  const [calendarType, setCalendarType] = useState<calendarType>("LeetCode");
-  const [year, setYear] = useState<yearType>("Previous 365 Days");
-  const [showTitle, setShowTitle] = useState<showTitleType>("Yes");
-  const [color, setColor] = useState<colorType>("Green");
+  const [dataSource, setDataSource] = useState<DataSourceType>("LeetCode");
+  const [timeRange, setTimeRange] = useState<TimeRangeType>("Previous 365 Days");
+  const [showTitle, setShowTitle] = useState(true);
+  // const [color, setColor] = useState<colorType>("Green");
 
   const [loadingUsername, setLoadingUsername] = useState(true);
 
   // Get data from browser storage
   useEffect(() => {
-    browser.storage.sync.get(["username", "calendarType", "year", "showTitle", "color"]).then(
-      (result: {
-        username?: string;
-        calendarType?: calendarType;
-        year?: yearType;
-        showTitle?: showTitleType;
-        color?: colorType;
-      }) => {
-        setUsername(result.username ?? username);
-        setLoadingUsername(false);
-        setCalendarType(result.calendarType ?? calendarType);
-        setYear(result.year ?? year);
-        setShowTitle(result.showTitle ?? showTitle);
-        setColor(result.color ?? color);
-      },
-      (error) => {
-        console.log(`Error getting data from browser storage: ${error}`);
-      }
-    );
-  }, [username, calendarType, year, showTitle, color]);
+    browser.storage.sync
+      .get([
+        "username",
+        "dataSource",
+        "timeRange",
+        "showTitle",
+        // "color"
+      ])
+      .then(
+        (result: {
+          username?: string;
+          dataSource?: DataSourceType;
+          timeRange?: TimeRangeType;
+          showTitle?: boolean;
+          // color?: colorType;
+        }) => {
+          setUsername(result.username ?? username);
+          setLoadingUsername(false);
+          setDataSource(result.dataSource ?? dataSource);
+          setTimeRange(result.timeRange ?? timeRange);
+          setShowTitle(result.showTitle ?? showTitle);
+          // setColor(result.color ?? color);
+        },
+        (error) => {
+          console.log(`Error getting data from browser storage: ${error}`);
+        }
+      );
+  }, [
+    username,
+    dataSource,
+    timeRange,
+    showTitle,
+    // color
+  ]);
 
   // Set data to browser storage
   const updateUsername = (input: string) => {
@@ -45,51 +59,56 @@ export default function App() {
     browser.storage.sync.set({ username: newUsername });
   };
 
-  const updateCalendarType = (newCalendarType: calendarType) => {
-    setCalendarType(newCalendarType);
-    browser.storage.sync.set({ calendarType: newCalendarType });
+  const updateDataSource = (newDataSource: DataSourceType) => {
+    setDataSource(newDataSource);
+    browser.storage.sync.set({ dataSource: newDataSource });
   };
 
-  const updateYear = (newYear: yearType) => {
-    setYear(newYear);
-    browser.storage.sync.set({ year: newYear });
+  const updateTimeRange = (newTimeRange: TimeRangeType) => {
+    setTimeRange(newTimeRange);
+    browser.storage.sync.set({ timeRange: newTimeRange });
   };
 
-  const updateShowTitle = (newShowTitle: showTitleType) => {
+  const updateShowTitle = (newShowTitle: boolean) => {
     setShowTitle(newShowTitle);
     browser.storage.sync.set({ showTitle: newShowTitle });
   };
 
-  const updateColor = (newColor: colorType) => {
-    setColor(newColor);
-    browser.storage.sync.set({ color: newColor });
-  };
+  // const updateColor = (newColor: colorType) => {
+  //   setColor(newColor);
+  //   browser.storage.sync.set({ color: newColor });
+  // };
 
   return (
-    <div className="h-screen bg-primary-background flex flex-col justify-center items-center gap-12">
-      {showTitle === "Yes" && (
-        <div className="px-8 flex flex-col items-center justify-center gap-2 text-6xl text-primary-text text-center font-bold">
-          <p>LeetCode Calendar for</p>
-          <span className="text-leetcode-orange">{username}</span>
+    <div className={`h-screen bg-${dataSource}-bg-1 flex flex-col justify-center items-center gap-12`}>
+      {showTitle && (
+        <div className={`px-8 flex flex-col items-center justify-center gap-2 text-6xl text-${dataSource}-text-1 text-center font-bold`}>
+          <p>{dataSource} Calendar for</p>
+          <span className={`text-${dataSource}`}>{username}</span>
         </div>
       )}
       <div className="flex flex-col items-center gap-6">
-        <div className="p-8 bg-secondary-background rounded-xl">
-          <Calendar username={username} calendarType={calendarType} year={year} color={color} />
+        <div className={`p-8 bg-${dataSource}-bg-2 rounded-xl`}>
+          <Calendar
+            username={username}
+            dataSource={dataSource}
+            timeRange={timeRange}
+            // color={color}
+          />
         </div>
         <div className="flex flex-row justify-center gap-4">
           <Settings
             username={username}
-            calendarType={calendarType}
-            year={year}
+            dataSource={dataSource}
+            timeRange={timeRange}
             showTitle={showTitle}
-            color={color}
+            // color={color}
             loadingUsername={loadingUsername}
             updateUsername={updateUsername}
-            updateCalendarType={updateCalendarType}
-            updateYear={updateYear}
+            updateDataSource={updateDataSource}
+            updateTimeRange={updateTimeRange}
             updateShowTitle={updateShowTitle}
-            updateColor={updateColor}
+            // updateColor={updateColor}
           />
           <Feedback />
         </div>

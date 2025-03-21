@@ -1,6 +1,6 @@
-export default async function fetchLeetCodeData(username: string, year: yearType) {
+export default async function fetchLeetCodeCalendar(username: string, timeRange: TimeRangeType) {
   try {
-    const variables = (year === "Previous 365 Days")
+    const variables = (timeRange === "Previous 365 Days")
       ? { "username": username }
       : { "username": username, "year": new Date().getUTCFullYear() };
     const response = await fetch("https://leetcode.com/graphql", {
@@ -24,22 +24,22 @@ export default async function fetchLeetCodeData(username: string, year: yearType
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const json = await response.json();
-    return parseData(json.data.matchedUser?.userCalendar.submissionCalendar ?? "", year);
+    return parseCalendar(json.data.matchedUser?.userCalendar.submissionCalendar ?? "", timeRange);
   } catch (error) {
     console.error(`Fetch error: ${error}`);
     return null;
   }
 }
 
-function parseData(rawData: string, year: yearType) {
+function parseCalendar(rawData: string, timeRange: TimeRangeType) {
   
-  const parsedData: Data = [];
+  const parsedCalendar: Data = [];
 
-  // Add data from leetcode API
+  // Add data from LeetCode API
   if (rawData !== "") {
-    const jsonData: jsonData = JSON.parse(rawData);
+    const jsonData: JSONData = JSON.parse(rawData);
     for (const [date, count] of Object.entries(jsonData)) {
-      parsedData.push({
+      parsedCalendar.push({
         date: formatDate(parseInt(date) * 1000),
         count: count,
         level: getLevelFromCount(count, jsonData),
@@ -47,22 +47,22 @@ function parseData(rawData: string, year: yearType) {
     }
   }
 
-  // If start or end date aren't included in data, add them (so calendar is full)
+  // If either the start or end date aren't included in data, then add them (so that the calendar is full)
 
   const currentYear = new Date().getUTCFullYear();
   const prevYearSameDay = new Date().setUTCFullYear(currentYear - 1);
 
-  const startDate = (year === "Previous 365 Days") ? formatDate(prevYearSameDay) : `${currentYear}-01-01`;
-  const endDate   = (year === "Previous 365 Days") ? formatDate(Date.now())      : `${currentYear}-12-31`;
+  const startDate = (timeRange === "Previous 365 Days") ? formatDate(prevYearSameDay) : `${currentYear}-01-01`;
+  const endDate   = (timeRange === "Previous 365 Days") ? formatDate(Date.now())      : `${currentYear}-12-31`;
 
-  if (parsedData.length === 0 || parsedData[0].date !== startDate) {
-    parsedData.unshift({ date: startDate, count: 0, level: 0 });
+  if (parsedCalendar.length === 0 || parsedCalendar[0].date !== startDate) {
+    parsedCalendar.unshift({ date: startDate, count: 0, level: 0 });
   }
-  if (parsedData.length === 0 || parsedData[parsedData.length - 1].date !== endDate) {
-    parsedData.push({ date: endDate, count: 0, level: 0 });
+  if (parsedCalendar.length === 0 || parsedCalendar[parsedCalendar.length - 1].date !== endDate) {
+    parsedCalendar.push({ date: endDate, count: 0, level: 0 });
   }
 
-  return parsedData;
+  return parsedCalendar;
   
 }
 
@@ -76,7 +76,7 @@ function formatDate(timestamp: number) {
   return `${year}-${formattedMonth}-${formattedDay}`;
 }
 
-function getLevelFromCount(count: number, jsonData: jsonData) {
+function getLevelFromCount(count: number, jsonData: JSONData) {
   if (count === 0) return 0;
   const maxCount: number = Math.max(...Object.values(jsonData) as number[]);
   return Math.ceil((count / maxCount) * 4);

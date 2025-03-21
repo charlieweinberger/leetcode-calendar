@@ -3,100 +3,89 @@ import { useState, useEffect, cloneElement } from "react";
 import { ActivityCalendar, Skeleton } from "react-activity-calendar";
 import { Tooltip } from "react-tooltip";
 
-import GitHubCalendar from 'react-github-calendar';
-import fetchLeetCodeData from "@/api/leetcode/fetchLeetCodeData";
-
-import { LEETCODE_GREEN, LEETCODE_ORANGE } from "@/lib/colorways";
+import GitHubCalendar from "react-github-calendar";
+import fetchLeetCodeCalendar from "@/api/leetcode/fetchCalendar";
+import { GITHUB_GREEN, LEETCODE_GREEN, WAKATIME_BLUE } from "@/lib/colorways";
 
 export default function Calendar({
   username,
-  calendarType,
-  year,
-  color,
-}: {
-  username: string
-  calendarType: calendarType
-  year: yearType
-  color: colorType
+  dataSource,
+  timeRange,
+  // colorway,
+}:
+{
+  username: string;
+  dataSource: DataSourceType;
+  timeRange: TimeRangeType;
+  // colorway: ColorwayType
 }) {
   const [data, setData] = useState<Data>([]);
 
   // Update data whenever username or year are updated
   useEffect(() => {
-    // Get data from LeetCode API
-    const updateCalendar = async (newUsername: string, newYear: yearType) => {
+    // Fetch calendar data from LeetCode API
+    const updateCalendar = async (
+      newUsername: string,
+      newTimeRange: TimeRangeType
+    ) => {
       if (newUsername === "") return;
-      const parsedData = await fetchLeetCodeData(newUsername, newYear);
+      const parsedData = await fetchLeetCodeCalendar(newUsername, newTimeRange);
       setData(parsedData ?? data);
     };
-    updateCalendar(username, year);
-  }, [username, year]);
+    updateCalendar(username, timeRange);
+  }, [username, timeRange]);
 
-  const yearLabel: string =
-    year === "Previous 365 Days"
+  const timeRangeLabel: string =
+    timeRange === "Previous 365 Days"
       ? "the past year"
       : new Date().getUTCFullYear().toString();
-  const colorScale: string[] =
-    color === "Green" ? LEETCODE_GREEN : LEETCODE_ORANGE;
+
+  let DataCalendar;
+  let colorScale;
+  let unit;
+
+  if (dataSource === "GitHub") {
+    DataCalendar = GitHubCalendar;
+    colorScale = GITHUB_GREEN;
+    unit = "contributions";
+  } else if (dataSource === "LeetCode") {
+    DataCalendar = ActivityCalendar;
+    colorScale = LEETCODE_GREEN;
+    unit = "submissions";
+  } else {
+    DataCalendar = ActivityCalendar;
+    colorScale = WAKATIME_BLUE;
+    unit = "minutes";
+  }
 
   if (!data.length) {
     return <Skeleton colorScheme="dark" loading />;
   }
 
-  if (calendarType === "GitHub") {
-    return (
-      <div className="text-primary-text">
-        <GitHubCalendar
-          username={username}
-          colorScheme="dark"
-          theme={{
-            light: colorScale,
-            dark: colorScale,
-          }}
-          renderBlock={(block, activity) =>
-            cloneElement(block, {
-              'data-tooltip-id': 'react-tooltip',
-              'data-tooltip-html': (activity.count !== 0) ? `${activity.count} contributions on ${activity.date}` : "",
-              style: { outline: 'none' }
-            })
-          }
-        />
-        <Tooltip
-          id="react-tooltip"
-          style={{
-            backgroundColor: "var(--color-tertiary-background)",
-            color: "var(--color-primary-text)",
-          }}
-        />
-      </div>
-    );
-  }
-
   return (
     <div className="text-primary-text">
-      <ActivityCalendar
-        data={data}
+      <DataCalendar
+        data={data} // this might override react-github-calendar's data from username
+        username={username}
         colorScheme="dark"
-        theme={{
-          light: colorScale,
-          dark: colorScale,
-        }}
-        labels={{
-          totalCount: `{{count}} submissions in ${yearLabel}`,
-        }}
+        theme={{ dark: colorScale }}
+        labels={{ totalCount: `{{count}} ${unit} in ${timeRangeLabel}` }}
         renderBlock={(block, activity) =>
           cloneElement(block, {
-            'data-tooltip-id': 'react-tooltip',
-            'data-tooltip-html': (activity.count !== 0) ? `${activity.count} submissions on ${activity.date}` : "",
-            style: { outline: 'none' }
+            "data-tooltip-id": "react-tooltip",
+            "data-tooltip-html":
+              activity.count !== 0
+                ? `${activity.count} ${unit} on ${activity.date}`
+                : "",
+            style: { outline: "none" },
           })
         }
       />
       <Tooltip
         id="react-tooltip"
         style={{
-          backgroundColor: "var(--color-tertiary-background)",
-          color: "var(--color-primary-text)",
+          backgroundColor: `var(--color-${dataSource}-bg-3)`,
+          color: `var(--color-${dataSource}-text-1)`,
         }}
       />
     </div>
