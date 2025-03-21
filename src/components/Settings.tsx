@@ -69,17 +69,17 @@ export default function Settings({
       <DialogTrigger asChild>
         <Button
           onClick={() => setOpen(true)}
-          className={`bg-${dataSource}-bg-2 hover:bg-${dataSource}-bg-3`}
+          className={`bg-${dataSource}-bg2 hover:bg-${dataSource}-bg3`}
         >
           Settings
         </Button>
       </DialogTrigger>
       <DialogContent
-        className={`w-88 p-8 text-${dataSource}-text-1 bg-${dataSource}-bg-2 rounded-xl border-none`}
+        className={`w-88 p-8 text-${dataSource}-t1 bg-${dataSource}-bg2 rounded-xl border-none`}
       >
         <DialogHeader>
           <DialogTitle>Settings</DialogTitle>
-          <DialogDescription className="text-secondary-text">
+          <DialogDescription className={`text-${dataSource}-t2`}>
             Update your LeetCode username and preferred time range.
           </DialogDescription>
         </DialogHeader>
@@ -90,10 +90,11 @@ export default function Settings({
               defaultValue={username}
               placeholder="username"
               onChange={(e) => setUsernameInput(e.target.value)}
-              className={`border-none bg-${dataSource}-bg-3 hover:bg-${dataSource}-bg-4 active:bg-${dataSource}-bg-4 selection:bg-${dataSource}`}
+              className={`border-none bg-${dataSource}-bg3 hover:bg-${dataSource}-bg4 active:bg-${dataSource}-bg4 selection:bg-${dataSource}`}
             />
             <Label>Data Source</Label>
             <Dropdown
+              dataSource={dataSource}
               options={["GitHub", "LeetCode", "WakaTime"]}
               input={dataSourceInput}
               setInput={setDataSourceInput}
@@ -101,6 +102,7 @@ export default function Settings({
             />
             <Label>Time Range</Label>
             <Dropdown
+              dataSource={dataSource}
               options={["Year to Date", "Previous 365 Days"]}
               input={timeRangeInput}
               setInput={setTimeRangeInput}
@@ -108,6 +110,7 @@ export default function Settings({
             />
             <Label>Show Title</Label>
             <Dropdown
+              dataSource={dataSource}
               options={[true, false]}
               optionsDisplayMap={
                 new Map<boolean, string>([
@@ -121,6 +124,7 @@ export default function Settings({
             />
             {/* <Label>Colorway</Label>
             <Dropdown
+              dataSource={dataSource}
               options={[
                 "GitHub",
                 "LeetCode (Green)",

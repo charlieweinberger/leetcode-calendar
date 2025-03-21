@@ -63,7 +63,7 @@ export default function Calendar({
   }
 
   return (
-    <div className="text-primary-text">
+    <div className={`text-${dataSource}-t1`}>
       <DataCalendar
         data={data} // this might override react-github-calendar's data from username
         username={username}
@@ -84,8 +84,8 @@ export default function Calendar({
       <Tooltip
         id="react-tooltip"
         style={{
-          backgroundColor: `var(--color-${dataSource}-bg-3)`,
-          color: `var(--color-${dataSource}-text-1)`,
+          backgroundColor: `var(--color-${dataSource}-bg3)`,
+          color: `var(--color-${dataSource}-t1)`,
         }}
       />
     </div>

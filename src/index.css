@@ -4,29 +4,29 @@
 
 @theme {
 
-  --color-github: #2a903b;
-  --color-github-text-1: #f0f6fc;
-  --color-github-text-2: #9198a1;
-  --color-github-bg-1: #02040a;
-  --color-github-bg-2: #0d1116;
-  --color-github-bg-3: #202830;
-  --color-github-bg-4: #262c36;
+  --color-GitHub: #2a903b;
+  --color-GitHub-t1: #f0f6fc;
+  --color-GitHub-t2: #9198a1;
+  --color-GitHub-bg1: #02040a;
+  --color-GitHub-bg2: #0d1116;
+  --color-GitHub-bg3: #202830;
+  --color-GitHub-bg4: #262c36;
 
-  --color-leetcode: #eba440;
-  --color-leetcode-text-1: #ffffff;
-  --color-leetcode-text-2: #a0a0a0;
-  --color-leetcode-bg-1: #1a1a1a;
-  --color-leetcode-bg-2: #282828;
-  --color-leetcode-bg-3: #373737;
-  --color-leetcode-bg-4: #464646;
+  --color-LeetCode: #eba440;
+  --color-LeetCode-t1: #ffffff;
+  --color-LeetCode-t2: #a0a0a0;
+  --color-LeetCode-bg1: #1a1a1a;
+  --color-LeetCode-bg2: #282828;
+  --color-LeetCode-bg3: #373737;
+  --color-LeetCode-bg4: #464646;
 
-  --color-wakatime: #337AB7;
-  --color-wakatime-text-1: #e1e7ef;
-  --color-wakatime-text-2: #7f8ea3;
-  --color-wakatime-bg-1: #030711;
-  --color-wakatime-bg-2: #0c1116;
-  --color-wakatime-bg-3: #29333a;
-  --color-wakatime-bg-4: #1d283a;
+  --color-WakaTime: #337AB7;
+  --color-WakaTime-t1: #e1e7ef;
+  --color-WakaTime-t2: #7f8ea3;
+  --color-WakaTime-bg1: #030711;
+  --color-WakaTime-bg2: #0c1116;
+  --color-WakaTime-bg3: #29333a;
+  --color-WakaTime-bg4: #1d283a;
 
 }
 
