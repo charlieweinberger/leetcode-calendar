@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import browser from "webextension-polyfill";
 
+import { color, t1, bg1 } from "@/lib/cvaHelpers";
+import { cn } from "@/lib/utils";
+
 import Calendar from "@/components/Calendar";
 import Settings from "@/components/Settings";
 import Feedback from "@/components/Feedback";
@@ -80,11 +83,11 @@ export default function App() {
   // };
 
   return (
-    <div className={`h-screen bg-${dataSource}-bg1 flex flex-col justify-center items-center gap-12`}>
+    <div className={cn(bg1({ dataSource }), "h-screen flex flex-col justify-center items-center gap-12")} >
     {showTitle && (
-        <div className={`px-8 flex flex-col items-center justify-center gap-2 text-6xl text-${dataSource}-t1 text-center font-bold`}>
+        <div className={cn(t1({ dataSource }), "px-8 flex flex-col items-center justify-center gap-2 text-6xl text-center font-bold")}>
           <p>{dataSource} Calendar for</p>
-          <span className={`text-${dataSource}`}>{username}</span>
+          <span className={color({ dataSource })}>{username}</span>
         </div>
       )}
       {/* <div className="flex flex-col items-center gap-6">
