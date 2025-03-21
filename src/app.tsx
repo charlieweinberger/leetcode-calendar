@@ -7,7 +7,7 @@ import Feedback from "@/components/Feedback";
 
 export default function App() {
   const [username, setUsername] = useState("");
-  const [dataSource, setDataSource] = useState<DataSourceType>("leetcode");
+  const [dataSource, setDataSource] = useState<DataSourceType>("LeetCode");
   const [timeRange, setTimeRange] = useState<TimeRangeType>("Previous 365 Days");
   const [showTitle, setShowTitle] = useState(true);
   // const [color, setColor] = useState<colorType>("Green");
@@ -81,13 +81,13 @@ export default function App() {
 
   return (
     <div className={`h-screen bg-${dataSource}-bg1 flex flex-col justify-center items-center gap-12`}>
-      {showTitle && (
+    {showTitle && (
         <div className={`px-8 flex flex-col items-center justify-center gap-2 text-6xl text-${dataSource}-t1 text-center font-bold`}>
           <p>{dataSource} Calendar for</p>
           <span className={`text-${dataSource}`}>{username}</span>
         </div>
       )}
-      <div className="flex flex-col items-center gap-6">
+      {/* <div className="flex flex-col items-center gap-6">
         <div className={`p-8 bg-${dataSource}-bg2 rounded-xl`}>
           <Calendar
             username={username}
@@ -114,7 +114,7 @@ export default function App() {
             dataSource={dataSource}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
