@@ -1,6 +1,7 @@
 // Settings types
 
-type yearType = "Year to Date" | "Previous 365 Days";
+type dataSourceType = "GitHub" | "LeetCode" | "WakaTime";
+type timeRangeType = "Year to Date" | "Previous 365 Days";
 type showTitleType = "Yes" | "No";
 type colorType = "Green" | "Orange";
 

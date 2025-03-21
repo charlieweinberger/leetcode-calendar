@@ -1,7 +1,7 @@
 {
   "version": "1.4.0",
   "manifest_version": 3,
-  "name": "Leetcode Calendar",
+  "name": "LeetCode Calendar",
   "description": "A web extension that displays your leetcode submission history as a heatmap/calendar every time you open a new tab!",
   "chrome_url_overrides": {
     "newtab": "src/index.html"

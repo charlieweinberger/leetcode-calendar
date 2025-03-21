@@ -1,4 +1,4 @@
-export default async function fetchData(username: string, year: yearType) {
+export default async function fetchLeetCodeData(username: string, year: yearType) {
   try {
     const variables = (year === "Previous 365 Days")
       ? { "username": username }

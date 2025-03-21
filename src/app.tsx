@@ -7,6 +7,7 @@ import Feedback from "@/components/Feedback";
 
 export default function App() {
   const [username, setUsername] = useState("");
+  const [calendarType, setCalendarType] = useState<calendarType>("LeetCode");
   const [year, setYear] = useState<yearType>("Previous 365 Days");
   const [showTitle, setShowTitle] = useState<showTitleType>("Yes");
   const [color, setColor] = useState<colorType>("Green");
@@ -15,15 +16,17 @@ export default function App() {
 
   // Get data from browser storage
   useEffect(() => {
-    browser.storage.sync.get(["username", "year", "showTitle", "color"]).then(
+    browser.storage.sync.get(["username", "calendarType", "year", "showTitle", "color"]).then(
       (result: {
         username?: string;
+        calendarType?: calendarType;
         year?: yearType;
         showTitle?: showTitleType;
         color?: colorType;
       }) => {
         setUsername(result.username ?? username);
         setLoadingUsername(false);
+        setCalendarType(result.calendarType ?? calendarType);
         setYear(result.year ?? year);
         setShowTitle(result.showTitle ?? showTitle);
         setColor(result.color ?? color);
@@ -32,7 +35,7 @@ export default function App() {
         console.log(`Error getting data from browser storage: ${error}`);
       }
     );
-  }, [username, year, showTitle, color]);
+  }, [username, calendarType, year, showTitle, color]);
 
   // Set data to browser storage
   const updateUsername = (input: string) => {
@@ -40,6 +43,11 @@ export default function App() {
     if (!newUsername) return;
     setUsername(newUsername);
     browser.storage.sync.set({ username: newUsername });
+  };
+
+  const updateCalendarType = (newCalendarType: calendarType) => {
+    setCalendarType(newCalendarType);
+    browser.storage.sync.set({ calendarType: newCalendarType });
   };
 
   const updateYear = (newYear: yearType) => {
@@ -61,22 +69,24 @@ export default function App() {
     <div className="h-screen bg-primary-background flex flex-col justify-center items-center gap-12">
       {showTitle === "Yes" && (
         <div className="px-8 flex flex-col items-center justify-center gap-2 text-6xl text-primary-text text-center font-bold">
-          <p>Leetcode Calendar for</p>
+          <p>LeetCode Calendar for</p>
           <span className="text-leetcode-orange">{username}</span>
         </div>
       )}
       <div className="flex flex-col items-center gap-6">
         <div className="p-8 bg-secondary-background rounded-xl">
-          <Calendar username={username} year={year} color={color} />
+          <Calendar username={username} calendarType={calendarType} year={year} color={color} />
         </div>
         <div className="flex flex-row justify-center gap-4">
           <Settings
             username={username}
+            calendarType={calendarType}
             year={year}
             showTitle={showTitle}
             color={color}
             loadingUsername={loadingUsername}
             updateUsername={updateUsername}
+            updateCalendarType={updateCalendarType}
             updateYear={updateYear}
             updateShowTitle={updateShowTitle}
             updateColor={updateColor}

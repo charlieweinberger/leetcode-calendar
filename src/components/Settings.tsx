@@ -16,31 +16,37 @@ import Dropdown from "@/components/Dropdown";
 
 export default function Settings({
   username,
+  calendarType,
   year,
   showTitle,
   color,
   loadingUsername,
   updateUsername,
+  updateCalendarType,
   updateYear,
   updateShowTitle,
   updateColor,
 }: {
   username: string;
+  calendarType: calendarType;
   year: yearType;
   showTitle: showTitleType;
   color: colorType;
   loadingUsername: boolean;
   updateUsername: (username: string) => void;
+  updateCalendarType: (calendarType: calendarType) => void;
   updateYear: (year: yearType) => void;
   updateShowTitle: (showTitle: showTitleType) => void;
   updateColor: (color: colorType) => void;
 }) {
   const [open, setOpen] = useState(false);
   const [usernameInput, setUsernameInput] = useState(username);
+  const [calendarTypeInput, setCalendarTypeInput] = useState<calendarType>(calendarType);
   const [yearInput, setYearInput] = useState<yearType>(year);
   const [showTitleInput, setShowTitleInput] = useState<showTitleType>(showTitle);
   const [colorInput, setColorInput] = useState<colorType>(color);
 
+  useEffect(() => setCalendarTypeInput(calendarType), [calendarType]);
   useEffect(() => setYearInput(year), [year]);
   useEffect(() => setShowTitleInput(showTitle), [showTitle]);
   useEffect(() => setColorInput(color), [color]);
@@ -48,6 +54,7 @@ export default function Settings({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     updateUsername(usernameInput);
+    updateCalendarType(calendarTypeInput);
     updateYear(yearInput);
     updateShowTitle(showTitleInput);
     updateColor(colorInput);
@@ -71,7 +78,7 @@ export default function Settings({
         <DialogHeader>
           <DialogTitle>Settings</DialogTitle>
           <DialogDescription className="text-secondary-text">
-            Update your Leetcode username and preferred time range.
+            Update your LeetCode username and preferred time range.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -82,6 +89,13 @@ export default function Settings({
               placeholder="username"
               onChange={(e) => setUsernameInput(e.target.value)}
               className="border-none bg-tertiary-background hover:bg-quaternary-background active:bg-quaternary-background selection:bg-leetcode-orange"
+            />
+            <Label>Data Type</Label>
+            <Dropdown
+              options={["GitHub", "LeetCode"]}
+              input={calendarTypeInput}
+              setInput={setCalendarTypeInput}
+              width={"w-46"}
             />
             <Label>Year Type</Label>
             <Dropdown

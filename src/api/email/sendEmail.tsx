@@ -8,7 +8,7 @@ export default async function sendEmail({ feedbackType, feedbackContent, userEma
     const { data, error } = await resend.emails.send({
       from: "Resend <onboarding@resend.dev>",
       to: ["charlieweinberger05@gmail.com"],
-      subject: `New feedback for Leetcode Calendar`,
+      subject: `New feedback for LeetCode Calendar`,
       react: EmailTemplate({
         feedbackType: feedbackType,
         feedbackContent: feedbackContent,
